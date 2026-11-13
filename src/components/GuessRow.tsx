@@ -12,6 +12,7 @@ interface GuessRowProps {
 }
 
 export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) => {
+  if (!guess || !guess.player) return null;
   const club = CLUBS[guess.player.clubId];
 
   const getStatusClasses = (status: MatchStatus) => {

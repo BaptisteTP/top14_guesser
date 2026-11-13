@@ -3,6 +3,7 @@ import type { Player, Club } from '../types/game';
 import { PLAYERS } from '../data/players';
 import { CLUBS } from '../data/clubs';
 import { ClubLogo } from './ClubLogo';
+import { getAssetUrl } from '../utils/assets';
 
 const CLUB_IDS = Object.keys(CLUBS);
 
@@ -106,7 +107,7 @@ export function QuizClubGame() {
           >
             <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 mb-2">
               {player.photoUrl ? (
-                <img src={player.photoUrl} alt={player.name} className="w-full h-full object-cover" />
+                <img src={getAssetUrl(player.photoUrl)} alt={player.name} className="w-full h-full object-cover" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-lg font-black text-slate-400">
                   {player.name[0]}

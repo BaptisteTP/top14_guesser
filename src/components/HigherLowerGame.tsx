@@ -4,6 +4,7 @@ import { PLAYERS } from '../data/players';
 import { CLUBS } from '../data/clubs';
 import { ClubLogo } from './ClubLogo';
 import { CountryFlag } from './CountryFlag';
+import { getAssetUrl } from '../utils/assets';
 
 type MetricType = 'height' | 'weight' | 'age';
 
@@ -128,7 +129,7 @@ export function HigherLowerGame() {
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col items-center text-center shadow-md relative overflow-hidden">
           <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 mb-3 shadow-sm">
             {playerA.photoUrl ? (
-              <img src={playerA.photoUrl} alt={playerA.name} className="w-full h-full object-cover" />
+              <img src={getAssetUrl(playerA.photoUrl)} alt={playerA.name} className="w-full h-full object-cover" />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-3xl font-black text-slate-400">
                 {playerA.name[0]}
@@ -173,7 +174,7 @@ export function HigherLowerGame() {
         >
           <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 mb-3 shadow-sm">
             {playerB.photoUrl ? (
-              <img src={playerB.photoUrl} alt={playerB.name} className="w-full h-full object-cover" />
+              <img src={getAssetUrl(playerB.photoUrl)} alt={playerB.name} className="w-full h-full object-cover" />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-3xl font-black text-slate-400">
                 {playerB.name[0]}

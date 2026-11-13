@@ -1,12 +1,14 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import type { Player } from '../types/game';
 import { PLAYERS } from '../data/players';
 import { CLUBS } from '../data/clubs';
+import { getAssetUrl } from '../utils/assets';
 import { SearchBar } from './SearchBar';
 import { ClubLogo } from './ClubLogo';
 import { CountryFlag } from './CountryFlag';
 
-const PLAYERS_WITH_PHOTO = PLAYERS.filter((p) => !!p.photoUrl);
+// Strictement les joueurs actifs qui possèdent un vrai fichier photo valide
+const PLAYERS_WITH_PHOTO = PLAYERS.filter((p) => typeof p.photoUrl === 'string' && p.photoUrl.length > 0);
 
 function getDailyBlurPlayer(): Player {
   const d = new Date().toISOString().slice(0, 10);
@@ -47,6 +49,11 @@ export function BlurGame() {
   });
 
   const [unlimitedGuesses, setUnlimitedGuesses] = useState<Player[]>([]);
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    setImageError(false);
+  }, [currentTarget.id]);
 
   const guesses = subMode === 'daily' ? dailyGuesses : unlimitedGuesses;
   const isWon = guesses.some((p) => p.id === currentTarget.id);
@@ -83,9 +90,11 @@ export function BlurGame() {
   const handleResetUnlimited = () => {
     setUnlimitedTarget(getRandomBlurPlayer(unlimitedTarget.id));
     setUnlimitedGuesses([]);
+    setImageError(false);
   };
 
   const club = CLUBS[currentTarget.clubId];
+  const photoSrc = getAssetUrl(currentTarget.photoUrl);
 
   return (
     <div className="max-w-xl mx-auto px-4 py-4 flex flex-col items-center">
@@ -123,19 +132,27 @@ export function BlurGame() {
       </div>
 
       {/* Cadre Photo Floutée */}
-      <div className="relative w-56 h-72 sm:w-64 sm:h-80 rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-900 shadow-2xl flex items-center justify-center mb-5 group">
-        <img
-          src={currentTarget.photoUrl || ''}
-          alt="Joueur mystère"
-          style={{
-            filter: `blur(${blurPixels}px) grayscale(${grayscalePercent}%)`,
-            transition: 'filter 0.5s ease-out',
-          }}
-          className="w-full h-full object-cover scale-110 pointer-events-none select-none"
-        />
+      <div className="relative w-56 h-72 sm:w-64 sm:h-80 rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-slate-700 bg-slate-200 dark:bg-slate-900 shadow-2xl flex items-center justify-center mb-5 group">
+        {!imageError && photoSrc ? (
+          <img
+            src={photoSrc}
+            alt="Joueur mystère"
+            onError={() => setImageError(true)}
+            style={{
+              filter: `blur(${blurPixels}px) grayscale(${grayscalePercent}%)`,
+              transition: 'filter 0.5s ease-out',
+            }}
+            className="w-full h-full object-cover scale-110 pointer-events-none select-none"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 p-4">
+            <span className="text-6xl mb-2">🏉</span>
+            <span className="text-xs font-bold text-center">Silhouette Mystère</span>
+          </div>
+        )}
 
         {/* Badge niveau de netteté */}
-        <div className="absolute top-2.5 right-2.5 bg-white/90 dark:bg-slate-950/80 backdrop-blur-md border border-slate-200 dark:border-slate-700/80 text-amber-600 dark:text-amber-400 text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
+        <div className="absolute top-2.5 right-2.5 bg-white/95 dark:bg-slate-950/80 backdrop-blur-md border border-slate-200 dark:border-slate-700/80 text-amber-600 dark:text-amber-400 text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
           {isGameOver ? 'Révélé' : `Essai ${guesses.length + 1} / ${MAX_ATTEMPTS}`}
         </div>
 
@@ -275,6 +292,7 @@ export function BlurGame() {
           </div>
           {guesses.map((p, idx) => {
             const correct = p.id === currentTarget.id;
+            const itemPhoto = getAssetUrl(p.photoUrl);
             return (
               <div
                 key={idx}
@@ -287,14 +305,20 @@ export function BlurGame() {
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span className="text-xs font-black w-4 text-slate-400 dark:text-slate-500">{guesses.length - idx}</span>
                   <div className="w-7 h-7 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-800 flex-shrink-0">
-                    <img
-                      src={p.photoUrl || ''}
-                      alt={p.name}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
+                    {itemPhoto ? (
+                      <img
+                        src={itemPhoto}
+                        alt={p.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLElement).style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-[10px] font-bold text-slate-500">
+                        {p.name[0]}
+                      </div>
+                    )}
                   </div>
                   <div className="truncate">
                     <span className="font-bold text-sm block truncate">{p.name}</span>

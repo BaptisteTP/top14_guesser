@@ -66,7 +66,10 @@ export function App() {
   const [dailyGuesses, setDailyGuesses] = useState<GuessResult[]>(() => {
     try {
       const saved = localStorage.getItem(`top14dle_daily_${todayStr}`);
-      return saved ? JSON.parse(saved) : [];
+      if (!saved) return [];
+      const parsed = JSON.parse(saved);
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter((g: GuessResult) => g && g.player && g.player.id);
     } catch {
       return [];
     }

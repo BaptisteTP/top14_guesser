@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Club } from '../types/game';
+import { getAssetUrl } from '../utils/assets';
 
 interface ClubLogoProps {
   club?: Club;
@@ -34,12 +35,14 @@ export const ClubLogo: React.FC<ClubLogoProps> = ({
     );
   }
 
+  const logoSrc = getAssetUrl(club.logo);
+
   return (
     <div
       className={`${sizeClasses[size]} inline-flex items-center justify-center shrink-0 drop-shadow-md ${className}`}
     >
       <img
-        src={club.logo}
+        src={logoSrc}
         alt={club.name}
         onError={() => setHasError(true)}
         className="max-w-full max-h-full object-contain filter drop-shadow"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import type { Player } from '../types/game';
 import { CLUBS } from '../data/clubs';
+import { getAssetUrl } from '../utils/assets';
 
 interface PlayerAvatarProps {
   player: Player;
@@ -31,7 +32,8 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
     .slice(0, 2)
     .toUpperCase();
 
-  const photoSrc = player.photoUrl || `/players/${player.id}.jpg`;
+  const rawPhotoSrc = player.photoUrl || `/players/${player.id}.jpg`;
+  const photoSrc = getAssetUrl(rawPhotoSrc);
 
   if (hasError || !photoSrc) {
     return (

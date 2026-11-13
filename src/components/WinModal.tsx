@@ -128,11 +128,20 @@ export const WinModal: React.FC<WinModalProps> = ({
                 <span className="text-xs text-amber-400 font-bold">{targetPlayer.position}</span>
               </div>
 
-              {/* Club */}
+              {/* Club & Ancien Club */}
               <div className="text-xs sm:text-sm text-slate-300 flex items-center gap-2 mt-2">
                 <ClubLogo club={club} size="xs" />
                 <span className="font-semibold">{club?.name}</span>
+                <span className="text-slate-500">•</span>
+                <span className="text-xs text-slate-400">
+                  {targetPlayer.category} ({targetPlayer.line})
+                </span>
               </div>
+              {targetPlayer.formerClub && (
+                <div className="text-[11px] text-slate-400 mt-1">
+                  <span className="text-slate-500">Origine :</span> {targetPlayer.formerClub}
+                </div>
+              )}
             </div>
           </div>
 

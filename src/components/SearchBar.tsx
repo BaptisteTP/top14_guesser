@@ -178,10 +178,13 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                     </div>
                   </div>
 
-                  {/* Line Badge */}
-                  <div className="text-right flex items-center gap-2">
-                    <span className="hidden sm:inline-block px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+                  {/* Stats & Line Badges */}
+                  <div className="text-right flex flex-col items-end gap-1">
+                    <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
                       {player.line}
+                    </span>
+                    <span className="text-[11px] text-slate-400 font-medium">
+                      {player.age} ans • {player.height} cm • {player.weight} kg
                     </span>
                   </div>
                 </button>

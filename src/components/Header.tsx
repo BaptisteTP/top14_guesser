@@ -45,6 +45,11 @@ export const Header: React.FC<HeaderProps> = ({
           <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1">
             Devine le joueur mystère du championnat de Top 14
           </p>
+          <div className="mt-1 flex items-center justify-center gap-2">
+            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-900 border border-slate-800 text-amber-400">
+              635 joueurs • 14 clubs
+            </span>
+          </div>
         </div>
 
         {/* Stats button */}

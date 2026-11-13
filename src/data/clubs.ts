@@ -12,7 +12,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#1A1A1A',
       text: '#FFFFFF',
     },
-    logo: '🔴⚫',
+    logo: '/clubs/stade-toulousain.png',
+    badgeEmoji: '🔴⚫',
   },
   'ubb': {
     id: 'ubb',
@@ -25,7 +26,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#FFFFFF',
       text: '#FFFFFF',
     },
-    logo: '🍷⚪',
+    logo: '/clubs/ubb.png',
+    badgeEmoji: '🍷⚪',
   },
   'stade-rochelais': {
     id: 'stade-rochelais',
@@ -38,7 +40,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#1A1A1A',
       text: '#1A1A1A',
     },
-    logo: '🟡⚫',
+    logo: '/clubs/stade-rochelais.png',
+    badgeEmoji: '🟡⚫',
   },
   'rc-toulon': {
     id: 'rc-toulon',
@@ -51,7 +54,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#111111',
       text: '#FFFFFF',
     },
-    logo: '🔴⚫',
+    logo: '/clubs/rc-toulon.png',
+    badgeEmoji: '🔴⚫',
   },
   'racing-92': {
     id: 'racing-92',
@@ -64,7 +68,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#FFFFFF',
       text: '#111111',
     },
-    logo: '🩵⚪',
+    logo: '/clubs/racing-92.png',
+    badgeEmoji: '🩵⚪',
   },
   'stade-francais': {
     id: 'stade-francais',
@@ -77,7 +82,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#002B7F',
       text: '#FFFFFF',
     },
-    logo: '🌸⚡',
+    logo: '/clubs/stade-francais.png',
+    badgeEmoji: '🌸⚡',
   },
   'asm-clermont': {
     id: 'asm-clermont',
@@ -90,7 +96,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#003399',
       text: '#111111',
     },
-    logo: '🟡🔵',
+    logo: '/clubs/asm-clermont.png',
+    badgeEmoji: '🟡🔵',
   },
   'lou-rugby': {
     id: 'lou-rugby',
@@ -103,7 +110,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#111111',
       text: '#FFFFFF',
     },
-    logo: '🐺🔴',
+    logo: '/clubs/lou-rugby.png',
+    badgeEmoji: '🐺🔴',
   },
   'castres-olympique': {
     id: 'castres-olympique',
@@ -116,7 +124,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#FFFFFF',
       text: '#FFFFFF',
     },
-    logo: '🔵⚪',
+    logo: '/clubs/castres-olympique.png',
+    badgeEmoji: '🔵⚪',
   },
   'montpellier-hr': {
     id: 'montpellier-hr',
@@ -129,7 +138,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#00A3E0',
       text: '#FFFFFF',
     },
-    logo: '🔵🩵',
+    logo: '/clubs/montpellier-hr.png',
+    badgeEmoji: '🔵🩵',
   },
   'section-paloise': {
     id: 'section-paloise',
@@ -142,7 +152,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#FFFFFF',
       text: '#FFFFFF',
     },
-    logo: '🟢⚪',
+    logo: '/clubs/section-paloise.png',
+    badgeEmoji: '🟢⚪',
   },
   'aviron-bayonnais': {
     id: 'aviron-bayonnais',
@@ -155,7 +166,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#FFFFFF',
       text: '#111111',
     },
-    logo: '🩵⚪',
+    logo: '/clubs/aviron-bayonnais.png',
+    badgeEmoji: '🩵⚪',
   },
   'usa-perpignan': {
     id: 'usa-perpignan',
@@ -168,7 +180,8 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#FFCD00',
       text: '#FFFFFF',
     },
-    logo: '🔴🟡',
+    logo: '/clubs/usa-perpignan.png',
+    badgeEmoji: '🔴🟡',
   },
   'rc-vannes': {
     id: 'rc-vannes',
@@ -181,6 +194,7 @@ export const CLUBS: Record<string, Club> = {
       secondary: '#FFFFFF',
       text: '#FFFFFF',
     },
-    logo: '🔵⚪',
+    logo: '/clubs/rc-vannes.png',
+    badgeEmoji: '🔵⚪',
   },
 };

@@ -4,6 +4,7 @@ export const PLAYERS: Player[] = [
   // ================= STADE TOULOUSAIN =================
   {
     id: 'antoine-dupont',
+    photoUrl: '/players/antoine-dupont.jpg',
     name: 'Antoine Dupont',
     clubId: 'stade-toulousain',
     position: 'Demi de mêlée',
@@ -22,6 +23,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'romain-ntamack',
+    photoUrl: '/players/romain-ntamack.jpg',
     name: 'Romain Ntamack',
     clubId: 'stade-toulousain',
     position: 'Demi d\'ouverture',
@@ -40,6 +42,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'thomas-ramos',
+    photoUrl: '/players/thomas-ramos.jpg',
     name: 'Thomas Ramos',
     clubId: 'stade-toulousain',
     position: 'Arrière',
@@ -58,6 +61,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'peato-mauvaka',
+    photoUrl: '/players/peato-mauvaka.jpg',
     name: 'Peato Mauvaka',
     clubId: 'stade-toulousain',
     position: 'Talonneur',
@@ -76,6 +80,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'julien-marchand',
+    photoUrl: '/players/julien-marchand.jpg',
     name: 'Julien Marchand',
     clubId: 'stade-toulousain',
     position: 'Talonneur',
@@ -94,6 +99,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'cyril-baille',
+    photoUrl: '/players/cyril-baille.jpg',
     name: 'Cyril Baille',
     clubId: 'stade-toulousain',
     position: 'Pilier gauche',
@@ -112,6 +118,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'emmanuel-meafou',
+    photoUrl: '/players/emmanuel-meafou.jpg',
     name: 'Emmanuel Meafou',
     clubId: 'stade-toulousain',
     position: 'Deuxième ligne',
@@ -130,6 +137,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'thibaud-flament',
+    photoUrl: '/players/thibaud-flament.jpg',
     name: 'Thibaud Flament',
     clubId: 'stade-toulousain',
     position: 'Deuxième ligne',
@@ -148,6 +156,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'francois-cros',
+    photoUrl: '/players/francois-cros.jpg',
     name: 'François Cros',
     clubId: 'stade-toulousain',
     position: 'Troisième ligne aile',
@@ -166,6 +175,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'alexandre-roumat',
+    photoUrl: '/players/alexandre-roumat.jpg',
     name: 'Alexandre Roumat',
     clubId: 'stade-toulousain',
     position: 'Troisième ligne centre',
@@ -184,6 +194,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'jack-willis',
+    photoUrl: '/players/jack-willis.jpg',
     name: 'Jack Willis',
     clubId: 'stade-toulousain',
     position: 'Troisième ligne aile',
@@ -202,6 +213,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'ange-capuozzo',
+    photoUrl: '/players/ange-capuozzo.jpg',
     name: 'Ange Capuozzo',
     clubId: 'stade-toulousain',
     position: 'Ailier',
@@ -220,6 +232,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'blair-kinghorn',
+    photoUrl: '/players/blair-kinghorn.jpg',
     name: 'Blair Kinghorn',
     clubId: 'stade-toulousain',
     position: 'Arrière',
@@ -238,6 +251,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'matthis-lebel',
+    photoUrl: '/players/matthis-lebel.jpg',
     name: 'Matthis Lebel',
     clubId: 'stade-toulousain',
     position: 'Ailier',
@@ -256,6 +270,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'paul-costes',
+    photoUrl: '/players/paul-costes.jpg',
     name: 'Paul Costes',
     clubId: 'stade-toulousain',
     position: 'Centre',
@@ -275,6 +290,7 @@ export const PLAYERS: Player[] = [
   // ================= UNION BORDEAUX BÈGLES =================
   {
     id: 'damian-penaud',
+    photoUrl: '/players/damian-penaud.jpg',
     name: 'Damian Penaud',
     clubId: 'ubb',
     position: 'Ailier',
@@ -293,6 +309,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'matthieu-jalibert',
+    photoUrl: '/players/matthieu-jalibert.jpg',
     name: 'Matthieu Jalibert',
     clubId: 'ubb',
     position: 'Demi d\'ouverture',
@@ -311,6 +328,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'maxime-lucu',
+    photoUrl: '/players/maxime-lucu.jpg',
     name: 'Maxime Lucu',
     clubId: 'ubb',
     position: 'Demi de mêlée',
@@ -329,6 +347,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'louis-bielle-biarrey',
+    photoUrl: '/players/louis-bielle-biarrey.jpg',
     name: 'Louis Bielle-Biarrey',
     clubId: 'ubb',
     position: 'Ailier',
@@ -347,6 +366,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'yoram-moefana',
+    photoUrl: '/players/yoram-moefana.jpg',
     name: 'Yoram Moefana',
     clubId: 'ubb',
     position: 'Centre',
@@ -365,6 +385,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'nicolas-depoortere',
+    photoUrl: '/players/nicolas-depoortere.jpg',
     name: 'Nicolas Depoortère',
     clubId: 'ubb',
     position: 'Centre',
@@ -383,6 +404,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'ben-tameifuna',
+    photoUrl: '/players/ben-tameifuna.jpg',
     name: 'Ben Tameifuna',
     clubId: 'ubb',
     position: 'Pilier droit',
@@ -401,6 +423,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'romain-buros',
+    photoUrl: '/players/romain-buros.jpg',
     name: 'Romain Buros',
     clubId: 'ubb',
     position: 'Arrière',
@@ -419,6 +442,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'tevita-tatafu-ubb',
+    photoUrl: '/players/tevita-tatafu-ubb.jpg',
     name: 'Tevita Tatafu',
     clubId: 'ubb',
     position: 'Troisième ligne centre',
@@ -439,6 +463,7 @@ export const PLAYERS: Player[] = [
   // ================= STADE ROCHELAIS =================
   {
     id: 'gregory-alldritt',
+    photoUrl: '/players/gregory-alldritt.jpg',
     name: 'Grégory Alldritt',
     clubId: 'stade-rochelais',
     position: 'Troisième ligne centre',
@@ -457,6 +482,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'uini-atonio',
+    photoUrl: '/players/uini-atonio.jpg',
     name: 'Uini Atonio',
     clubId: 'stade-rochelais',
     position: 'Pilier droit',
@@ -475,6 +501,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'will-skelton',
+    photoUrl: '/players/will-skelton.jpg',
     name: 'Will Skelton',
     clubId: 'stade-rochelais',
     position: 'Deuxième ligne',
@@ -493,6 +520,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'brice-dulin',
+    photoUrl: '/players/brice-dulin.jpg',
     name: 'Brice Dulin',
     clubId: 'stade-rochelais',
     position: 'Arrière',
@@ -511,6 +539,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'jonathan-danty',
+    photoUrl: '/players/jonathan-danty.jpg',
     name: 'Jonathan Danty',
     clubId: 'stade-rochelais',
     position: 'Centre',
@@ -529,6 +558,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'antoine-hastoy',
+    photoUrl: '/players/antoine-hastoy.jpg',
     name: 'Antoine Hastoy',
     clubId: 'stade-rochelais',
     position: 'Demi d\'ouverture',
@@ -547,6 +577,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'pierre-bourgarit',
+    photoUrl: '/players/pierre-bourgarit.jpg',
     name: 'Pierre Bourgarit',
     clubId: 'stade-rochelais',
     position: 'Talonneur',
@@ -565,6 +596,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'levani-botia',
+    photoUrl: '/players/levani-botia.jpg',
     name: 'Levani Botia',
     clubId: 'stade-rochelais',
     position: 'Troisième ligne aile',
@@ -583,6 +615,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'reda-wardi',
+    photoUrl: '/players/reda-wardi.jpg',
     name: 'Reda Wardi',
     clubId: 'stade-rochelais',
     position: 'Pilier gauche',
@@ -603,6 +636,7 @@ export const PLAYERS: Player[] = [
   // ================= RC TOULON =================
   {
     id: 'charles-ollivon',
+    photoUrl: '/players/charles-ollivon.jpg',
     name: 'Charles Ollivon',
     clubId: 'rc-toulon',
     position: 'Troisième ligne aile',
@@ -621,6 +655,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'baptiste-serin',
+    photoUrl: '/players/baptiste-serin.jpg',
     name: 'Baptiste Serin',
     clubId: 'rc-toulon',
     position: 'Demi de mêlée',
@@ -639,6 +674,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'gabin-villiere',
+    photoUrl: '/players/gabin-villiere.jpg',
     name: 'Gabin Villière',
     clubId: 'rc-toulon',
     position: 'Ailier',
@@ -657,6 +693,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'melvyn-jaminet',
+    photoUrl: '/players/melvyn-jaminet.jpg',
     name: 'Melvyn Jaminet',
     clubId: 'rc-toulon',
     position: 'Arrière',
@@ -675,6 +712,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'paolo-garbisi',
+    photoUrl: '/players/paolo-garbisi.jpg',
     name: 'Paolo Garbisi',
     clubId: 'rc-toulon',
     position: 'Demi d\'ouverture',
@@ -693,6 +731,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'facundo-isa',
+    photoUrl: '/players/facundo-isa.jpg',
     name: 'Facundo Isa',
     clubId: 'rc-toulon',
     position: 'Troisième ligne centre',
@@ -711,6 +750,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'kyle-sinckler',
+    photoUrl: '/players/kyle-sinckler.jpg',
     name: 'Kyle Sinckler',
     clubId: 'rc-toulon',
     position: 'Pilier droit',
@@ -729,6 +769,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'lewis-ludlam',
+    photoUrl: '/players/lewis-ludlam.jpg',
     name: 'Lewis Ludlam',
     clubId: 'rc-toulon',
     position: 'Troisième ligne aile',
@@ -749,6 +790,7 @@ export const PLAYERS: Player[] = [
   // ================= RACING 92 =================
   {
     id: 'owen-farrell',
+    photoUrl: '/players/owen-farrell.jpg',
     name: 'Owen Farrell',
     clubId: 'racing-92',
     position: 'Demi d\'ouverture',
@@ -767,6 +809,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'nolann-le-garrec',
+    photoUrl: '/players/nolann-le-garrec.jpg',
     name: 'Nolann Le Garrec',
     clubId: 'racing-92',
     position: 'Demi de mêlée',
@@ -785,6 +828,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'gael-fickou',
+    photoUrl: '/players/gael-fickou.jpg',
     name: 'Gaël Fickou',
     clubId: 'racing-92',
     position: 'Centre',
@@ -803,6 +847,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'cameron-woki',
+    photoUrl: '/players/cameron-woki.jpg',
     name: 'Cameron Woki',
     clubId: 'racing-92',
     position: 'Deuxième ligne',
@@ -821,6 +866,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'josua-tuisova',
+    photoUrl: '/players/josua-tuisova.jpg',
     name: 'Josua Tuisova',
     clubId: 'racing-92',
     position: 'Ailier',
@@ -839,6 +885,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'henry-arundell',
+    photoUrl: '/players/henry-arundell.jpg',
     name: 'Henry Arundell',
     clubId: 'racing-92',
     position: 'Ailier',
@@ -857,6 +904,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'camille-chat',
+    photoUrl: '/players/camille-chat.jpg',
     name: 'Camille Chat',
     clubId: 'racing-92',
     position: 'Talonneur',
@@ -877,6 +925,7 @@ export const PLAYERS: Player[] = [
   // ================= STADE FRANÇAIS PARIS =================
   {
     id: 'leo-barre',
+    photoUrl: '/players/leo-barre.jpg',
     name: 'Léo Barré',
     clubId: 'stade-francais',
     position: 'Arrière',
@@ -895,6 +944,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'sekou-macalou',
+    photoUrl: '/players/sekou-macalou.jpg',
     name: 'Sekou Macalou',
     clubId: 'stade-francais',
     position: 'Troisième ligne aile',
@@ -913,6 +963,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'paul-gabrillagues',
+    photoUrl: '/players/paul-gabrillagues.jpg',
     name: 'Paul Gabrillagues',
     clubId: 'stade-francais',
     position: 'Deuxième ligne',
@@ -931,6 +982,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'romain-briatte',
+    photoUrl: '/players/romain-briatte.jpg',
     name: 'Romain Briatte',
     clubId: 'stade-francais',
     position: 'Troisième ligne aile',
@@ -949,6 +1001,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'joe-marchant',
+    photoUrl: '/players/joe-marchant.jpg',
     name: 'Joe Marchant',
     clubId: 'stade-francais',
     position: 'Centre',
@@ -967,6 +1020,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'peniasi-dakuwaqa',
+    photoUrl: '/players/peniasi-dakuwaqa.jpg',
     name: 'Peniasi Dakuwaqa',
     clubId: 'stade-francais',
     position: 'Ailier',
@@ -987,6 +1041,7 @@ export const PLAYERS: Player[] = [
   // ================= SECTION PALOISE =================
   {
     id: 'emilien-gailleton',
+    photoUrl: '/players/emilien-gailleton.jpg',
     name: 'Émilien Gailleton',
     clubId: 'section-paloise',
     position: 'Centre',
@@ -1005,6 +1060,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'joe-simmonds',
+    photoUrl: '/players/joe-simmonds.jpg',
     name: 'Joe Simmonds',
     clubId: 'section-paloise',
     position: 'Demi d\'ouverture',
@@ -1022,6 +1078,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'beka-gorgadze',
+    photoUrl: '/players/beka-gorgadze.jpg',
     name: 'Beka Gorgadze',
     clubId: 'section-paloise',
     position: 'Troisième ligne centre',
@@ -1040,6 +1097,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'jack-maddocks',
+    photoUrl: '/players/jack-maddocks.jpg',
     name: 'Jack Maddocks',
     clubId: 'section-paloise',
     position: 'Arrière',
@@ -1058,6 +1116,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'luke-whitelock',
+    photoUrl: '/players/luke-whitelock.jpg',
     name: 'Luke Whitelock',
     clubId: 'section-paloise',
     position: 'Troisième ligne aile',
@@ -1078,6 +1137,7 @@ export const PLAYERS: Player[] = [
   // ================= LOU RUGBY (LYON) =================
   {
     id: 'baptiste-couilloud',
+    photoUrl: '/players/baptiste-couilloud.jpg',
     name: 'Baptiste Couilloud',
     clubId: 'lou-rugby',
     position: 'Demi de mêlée',
@@ -1096,6 +1156,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'semi-radradra',
+    photoUrl: '/players/semi-radradra.jpg',
     name: 'Semi Radradra',
     clubId: 'lou-rugby',
     position: 'Centre',
@@ -1114,6 +1175,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'davit-niniashvili',
+    photoUrl: '/players/davit-niniashvili.jpg',
     name: 'Davit Niniashvili',
     clubId: 'lou-rugby',
     position: 'Arrière',
@@ -1132,6 +1194,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'dylan-cretin',
+    photoUrl: '/players/dylan-cretin.jpg',
     name: 'Dylan Cretin',
     clubId: 'lou-rugby',
     position: 'Troisième ligne aile',
@@ -1150,6 +1213,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'monty-ioane',
+    photoUrl: '/players/monty-ioane.jpg',
     name: 'Monty Ioane',
     clubId: 'lou-rugby',
     position: 'Ailier',
@@ -1170,6 +1234,7 @@ export const PLAYERS: Player[] = [
   // ================= ASM CLERMONT AUVERGNE =================
   {
     id: 'baptiste-jauneau',
+    photoUrl: '/players/baptiste-jauneau.jpg',
     name: 'Baptiste Jauneau',
     clubId: 'asm-clermont',
     position: 'Demi de mêlée',
@@ -1188,6 +1253,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'alivereti-raka',
+    photoUrl: '/players/alivereti-raka.jpg',
     name: 'Alivereti Raka',
     clubId: 'asm-clermont',
     position: 'Ailier',
@@ -1206,6 +1272,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'peceli-yato',
+    photoUrl: '/players/peceli-yato.jpg',
     name: 'Peceli Yato',
     clubId: 'asm-clermont',
     position: 'Troisième ligne aile',
@@ -1224,6 +1291,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'marcos-kremer',
+    photoUrl: '/players/marcos-kremer.jpg',
     name: 'Marcos Kremer',
     clubId: 'asm-clermont',
     position: 'Deuxième ligne',
@@ -1242,6 +1310,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'george-moala',
+    photoUrl: '/players/george-moala.jpg',
     name: 'George Moala',
     clubId: 'asm-clermont',
     position: 'Centre',
@@ -1260,6 +1329,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'leon-darricarrere',
+    photoUrl: '/players/leon-darricarrere.jpg',
     name: 'Léon Darricarrère',
     clubId: 'asm-clermont',
     position: 'Centre',
@@ -1279,6 +1349,7 @@ export const PLAYERS: Player[] = [
   // ================= CASTRES OLYMPIQUE =================
   {
     id: 'julien-dumora',
+    photoUrl: '/players/julien-dumora.jpg',
     name: 'Julien Dumora',
     clubId: 'castres-olympique',
     position: 'Arrière',
@@ -1296,6 +1367,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'santiago-arata',
+    photoUrl: '/players/santiago-arata.jpg',
     name: 'Santiago Arata',
     clubId: 'castres-olympique',
     position: 'Demi de mêlée',
@@ -1314,6 +1386,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'mathieu-babillot',
+    photoUrl: '/players/mathieu-babillot.jpg',
     name: 'Mathieu Babillot',
     clubId: 'castres-olympique',
     position: 'Troisième ligne aile',
@@ -1332,6 +1405,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'tyler-ardron',
+    photoUrl: '/players/tyler-ardron.jpg',
     name: 'Tyler Ardron',
     clubId: 'castres-olympique',
     position: 'Deuxième ligne',
@@ -1350,6 +1424,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'pierre-popelin',
+    photoUrl: '/players/pierre-popelin.jpg',
     name: 'Pierre Popelin',
     clubId: 'castres-olympique',
     position: 'Demi d\'ouverture',
@@ -1369,6 +1444,7 @@ export const PLAYERS: Player[] = [
   // ================= MONTPELLIER HÉRAULT RUGBY =================
   {
     id: 'cobus-reinach',
+    photoUrl: '/players/cobus-reinach.jpg',
     name: 'Cobus Reinach',
     clubId: 'montpellier-hr',
     position: 'Demi de mêlée',
@@ -1387,6 +1463,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'billy-vunipola',
+    photoUrl: '/players/billy-vunipola.jpg',
     name: 'Billy Vunipola',
     clubId: 'montpellier-hr',
     position: 'Troisième ligne centre',
@@ -1405,6 +1482,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'paul-willemse',
+    photoUrl: '/players/paul-willemse.jpg',
     name: 'Paul Willemse',
     clubId: 'montpellier-hr',
     position: 'Deuxième ligne',
@@ -1423,6 +1501,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'anthony-bouthier',
+    photoUrl: '/players/anthony-bouthier.jpg',
     name: 'Anthony Bouthier',
     clubId: 'montpellier-hr',
     position: 'Arrière',
@@ -1441,6 +1520,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'sam-simmonds',
+    photoUrl: '/players/sam-simmonds.jpg',
     name: 'Sam Simmonds',
     clubId: 'montpellier-hr',
     position: 'Troisième ligne centre',
@@ -1459,6 +1539,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'stuart-hogg',
+    photoUrl: '/players/stuart-hogg.jpg',
     name: 'Stuart Hogg',
     clubId: 'montpellier-hr',
     position: 'Arrière',
@@ -1479,6 +1560,7 @@ export const PLAYERS: Player[] = [
   // ================= AVIRON BAYONNAIS =================
   {
     id: 'camille-lopez',
+    photoUrl: '/players/camille-lopez.jpg',
     name: 'Camille Lopez',
     clubId: 'aviron-bayonnais',
     position: 'Demi d\'ouverture',
@@ -1497,6 +1579,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'arthur-iturria',
+    photoUrl: '/players/arthur-iturria.jpg',
     name: 'Arthur Iturria',
     clubId: 'aviron-bayonnais',
     position: 'Deuxième ligne',
@@ -1515,6 +1598,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'manu-tuilagi',
+    photoUrl: '/players/manu-tuilagi.jpg',
     name: 'Manu Tuilagi',
     clubId: 'aviron-bayonnais',
     position: 'Centre',
@@ -1533,6 +1617,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'sireli-maqala',
+    photoUrl: '/players/sireli-maqala.jpg',
     name: 'Sireli Maqala',
     clubId: 'aviron-bayonnais',
     position: 'Centre',
@@ -1551,6 +1636,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'federico-mori',
+    photoUrl: '/players/federico-mori.jpg',
     name: 'Federico Mori',
     clubId: 'aviron-bayonnais',
     position: 'Centre',
@@ -1571,6 +1657,7 @@ export const PLAYERS: Player[] = [
   // ================= USA PERPIGNAN =================
   {
     id: 'tommaso-allan',
+    photoUrl: '/players/tommaso-allan.jpg',
     name: 'Tommaso Allan',
     clubId: 'usa-perpignan',
     position: 'Demi d\'ouverture',
@@ -1589,6 +1676,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'posolo-tuilagi',
+    photoUrl: '/players/posolo-tuilagi.jpg',
     name: 'Posolo Tuilagi',
     clubId: 'usa-perpignan',
     position: 'Deuxième ligne',
@@ -1607,6 +1695,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'jake-mcintyre',
+    photoUrl: '/players/jake-mcintyre.jpg',
     name: 'Jake McIntyre',
     clubId: 'usa-perpignan',
     position: 'Demi d\'ouverture',
@@ -1624,6 +1713,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'alivereti-duguivalu',
+    photoUrl: '/players/alivereti-duguivalu.jpg',
     name: 'Alivereti Duguivalu',
     clubId: 'usa-perpignan',
     position: 'Ailier',
@@ -1641,6 +1731,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'sootala-faasoo',
+    photoUrl: '/players/sootala-faasoo.jpg',
     name: 'So\'otala Fa\'aso\'o',
     clubId: 'usa-perpignan',
     position: 'Troisième ligne centre',
@@ -1661,6 +1752,7 @@ export const PLAYERS: Player[] = [
   // ================= RC VANNES =================
   {
     id: 'maxime-lafage',
+    photoUrl: '/players/maxime-lafage.jpg',
     name: 'Maxime Lafage',
     clubId: 'rc-vannes',
     position: 'Demi d\'ouverture',
@@ -1678,6 +1770,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'mako-vunipola',
+    photoUrl: '/players/mako-vunipola.jpg',
     name: 'Mako Vunipola',
     clubId: 'rc-vannes',
     position: 'Pilier gauche',
@@ -1696,6 +1789,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'francisco-gorrissen',
+    photoUrl: '/players/francisco-gorrissen.jpg',
     name: 'Francisco Gorrissen',
     clubId: 'rc-vannes',
     position: 'Troisième ligne aile',
@@ -1714,6 +1808,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'gwenael-duplenne',
+    photoUrl: '/players/gwenael-duplenne.jpg',
     name: 'Gwenaël Duplenne',
     clubId: 'rc-vannes',
     position: 'Arrière',
@@ -1731,6 +1826,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'inaki-ayarza',
+    photoUrl: '/players/inaki-ayarza.jpg',
     name: 'Iñaki Ayarza',
     clubId: 'rc-vannes',
     position: 'Centre',

@@ -4,6 +4,8 @@ import { Share2, Check, RotateCw, Flame, Trophy, X } from 'lucide-react';
 import type { Player, GuessResult, GameMode } from '../types/game';
 import { CLUBS } from '../data/clubs';
 import { generateShareText } from '../utils/gameLogic';
+import { PlayerAvatar } from './PlayerAvatar';
+import { ClubLogo } from './ClubLogo';
 
 interface WinModalProps {
   isOpen: boolean;
@@ -32,8 +34,8 @@ export const WinModal: React.FC<WinModalProps> = ({
     if (isOpen) {
       try {
         confetti({
-          particleCount: 100,
-          spread: 70,
+          particleCount: 120,
+          spread: 80,
           origin: { y: 0.6 },
           colors: ['#f59e0b', '#10b981', '#3b82f6', '#ec4899', '#ffffff'],
         });
@@ -107,20 +109,29 @@ export const WinModal: React.FC<WinModalProps> = ({
           />
 
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-3xl shadow-inner">
-              {club?.logo || '🏉'}
-            </div>
-            <div>
+            {/* Big Player Portrait */}
+            <PlayerAvatar player={targetPlayer} size="xl" className="ring-2 ring-amber-500/40" />
+
+            <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-xl sm:text-2xl font-black text-white">
+                <span className="text-xl sm:text-2xl font-black text-white truncate">
                   {targetPlayer.name}
                 </span>
-                <span className="text-lg">{targetPlayer.flag}</span>
               </div>
-              <div className="text-xs sm:text-sm text-slate-400 flex items-center gap-2 mt-0.5">
-                <span className="font-semibold text-slate-200">{club?.name}</span>
-                <span>•</span>
-                <span className="text-amber-400 font-medium">{targetPlayer.position}</span>
+
+              {/* Nationalité Badge */}
+              <div className="flex items-center gap-2 mt-1">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-white">
+                  <span>{targetPlayer.flag}</span>
+                  <span>{targetPlayer.nationality}</span>
+                </span>
+                <span className="text-xs text-amber-400 font-bold">{targetPlayer.position}</span>
+              </div>
+
+              {/* Club */}
+              <div className="text-xs sm:text-sm text-slate-300 flex items-center gap-2 mt-2">
+                <ClubLogo club={club} size="xs" />
+                <span className="font-semibold">{club?.name}</span>
               </div>
             </div>
           </div>

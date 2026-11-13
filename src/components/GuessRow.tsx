@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 import type { GuessResult, MatchStatus, Direction } from '../types/game';
 import { CLUBS } from '../data/clubs';
+import { PlayerAvatar } from './PlayerAvatar';
+import { ClubLogo } from './ClubLogo';
 
 interface GuessRowProps {
   guess: GuessResult;
@@ -38,30 +40,34 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
   };
 
   return (
-    <div className="w-full grid grid-cols-8 gap-1.5 sm:gap-2.5 my-2 text-xs sm:text-sm font-semibold select-none">
-      {/* 1. Joueur */}
+    <div className="w-full grid grid-cols-8 gap-1.5 sm:gap-2.5 my-2.5 text-xs sm:text-sm font-semibold select-none">
+      {/* 1. Joueur (Photo + Nom) */}
       <div
         style={{ animationDelay: isNewest ? '0ms' : '0ms' }}
-        className={`h-20 sm:h-24 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${
+        className={`h-24 sm:h-28 p-1 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${
           guess.isWinningGuess
             ? 'bg-emerald-600 border-emerald-400 text-white animate-bounce'
             : 'bg-slate-900 border-slate-700/80 text-white'
         } ${isNewest ? 'animate-flip' : ''}`}
       >
-        <span className="text-xl sm:text-2xl mb-0.5">{guess.player.flag}</span>
+        <div className="mb-1">
+          <PlayerAvatar player={guess.player} size="sm" />
+        </div>
         <span className="leading-tight text-[11px] sm:text-xs font-bold line-clamp-2">
           {guess.player.name}
         </span>
       </div>
 
-      {/* 2. Club */}
+      {/* 2. Club (Logo Officiel + Nom) */}
       <div
         style={{ animationDelay: isNewest ? '150ms' : '0ms' }}
-        className={`h-20 sm:h-24 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
+        className={`h-24 sm:h-28 p-1 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
           guess.club.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
-        <span className="text-lg sm:text-xl mb-1">{club?.logo || '🏉'}</span>
+        <div className="mb-1">
+          <ClubLogo club={club} size="sm" />
+        </div>
         <span className="leading-tight text-[10px] sm:text-xs font-bold">
           {club?.shortName || guess.club.displayValue}
         </span>
@@ -70,7 +76,7 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
       {/* 3. Poste */}
       <div
         style={{ animationDelay: isNewest ? '300ms' : '0ms' }}
-        className={`h-20 sm:h-24 p-1 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
+        className={`h-24 sm:h-28 p-1 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
           guess.position.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
@@ -82,15 +88,15 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
         </span>
       </div>
 
-      {/* 4. Nationalité */}
+      {/* 4. Nationalité (Drapeau + Pays) */}
       <div
         style={{ animationDelay: isNewest ? '450ms' : '0ms' }}
-        className={`h-20 sm:h-24 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
+        className={`h-24 sm:h-28 p-1 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
           guess.nationality.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
-        <span className="text-xl sm:text-2xl mb-1">{guess.player.flag}</span>
-        <span className="leading-tight text-[10px] sm:text-xs truncate max-w-full">
+        <span className="text-2xl sm:text-3xl mb-1">{guess.player.flag}</span>
+        <span className="leading-tight text-[10px] sm:text-xs truncate max-w-full font-bold">
           {guess.player.nationality}
         </span>
       </div>
@@ -98,7 +104,7 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
       {/* 5. Âge */}
       <div
         style={{ animationDelay: isNewest ? '600ms' : '0ms' }}
-        className={`h-20 sm:h-24 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
+        className={`h-24 sm:h-28 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
           guess.age.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
@@ -109,7 +115,7 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
       {/* 6. Taille */}
       <div
         style={{ animationDelay: isNewest ? '750ms' : '0ms' }}
-        className={`h-20 sm:h-24 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
+        className={`h-24 sm:h-28 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
           guess.height.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
@@ -120,7 +126,7 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
       {/* 7. Poids */}
       <div
         style={{ animationDelay: isNewest ? '900ms' : '0ms' }}
-        className={`h-20 sm:h-24 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
+        className={`h-24 sm:h-28 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
           guess.weight.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
@@ -131,7 +137,7 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
       {/* 8. International */}
       <div
         style={{ animationDelay: isNewest ? '1050ms' : '0ms' }}
-        className={`h-20 sm:h-24 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
+        className={`h-24 sm:h-28 p-1 sm:p-2 rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center text-center shadow-lg transition-all ${getStatusClasses(
           guess.isInternational.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >

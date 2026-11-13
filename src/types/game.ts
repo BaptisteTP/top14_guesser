@@ -33,6 +33,7 @@ export interface Club {
     text: string;
   };
   logo: string;
+  badgeEmoji?: string;
 }
 
 export interface Player {

@@ -4,6 +4,7 @@ import type { GuessResult, MatchStatus, Direction } from '../types/game';
 import { CLUBS } from '../data/clubs';
 import { PlayerAvatar } from './PlayerAvatar';
 import { ClubLogo } from './ClubLogo';
+import { CountryFlag } from './CountryFlag';
 
 interface GuessRowProps {
   guess: GuessResult;
@@ -80,14 +81,20 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
         </span>
       </div>
 
-      {/* 4. Nationalité */}
+      {/* 4. Nationalité (Drapeau officiel + Pays) */}
       <div
         style={{ animationDelay: isNewest ? '450ms' : '0ms' }}
         className={`h-20 sm:h-22 p-1 rounded-xl border flex flex-col items-center justify-center text-center shadow-sm transition-all ${getStatusClasses(
           guess.nationality.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
-        <span className="text-xl mb-0.5">{guess.player.flag}</span>
+        <div className="mb-1 flex items-center justify-center">
+          <CountryFlag
+            nationality={guess.player.nationality}
+            fallbackEmoji={guess.player.flag}
+            size="lg"
+          />
+        </div>
         <span className="leading-tight text-[11px] truncate max-w-full font-bold">
           {guess.player.nationality}
         </span>

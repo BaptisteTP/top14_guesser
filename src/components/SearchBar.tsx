@@ -5,6 +5,7 @@ import { PLAYERS } from '../data/players';
 import { CLUBS } from '../data/clubs';
 import { PlayerAvatar } from './PlayerAvatar';
 import { ClubLogo } from './ClubLogo';
+import { CountryFlag } from './CountryFlag';
 
 interface SearchBarProps {
   onSelectPlayer: (player: Player) => void;
@@ -149,7 +150,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                     <div>
                       <div className="font-semibold text-sm text-slate-100 flex items-center gap-1.5">
                         <span>{player.name}</span>
-                        <span className="text-xs">{player.flag}</span>
+                        <CountryFlag nationality={player.nationality} fallbackEmoji={player.flag} size="sm" />
                       </div>
                       <div className="text-xs text-slate-400 flex items-center gap-1.5">
                         <ClubLogo club={club} size="xs" />

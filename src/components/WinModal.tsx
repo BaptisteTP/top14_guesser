@@ -6,6 +6,7 @@ import { CLUBS } from '../data/clubs';
 import { generateShareText } from '../utils/gameLogic';
 import { PlayerAvatar } from './PlayerAvatar';
 import { ClubLogo } from './ClubLogo';
+import { CountryFlag } from './CountryFlag';
 
 interface WinModalProps {
   isOpen: boolean;
@@ -122,7 +123,7 @@ export const WinModal: React.FC<WinModalProps> = ({
               {/* Nationalité Badge */}
               <div className="flex items-center gap-2 mt-1">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-white">
-                  <span>{targetPlayer.flag}</span>
+                  <CountryFlag nationality={targetPlayer.nationality} fallbackEmoji={targetPlayer.flag} size="sm" />
                   <span>{targetPlayer.nationality}</span>
                 </span>
                 <span className="text-xs text-amber-400 font-bold">{targetPlayer.position}</span>

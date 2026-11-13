@@ -9,6 +9,7 @@ import {
 } from './utils/gameLogic';
 import { Header } from './components/Header';
 import { GameNav } from './components/GameNav';
+import { ClubFilterBar } from './components/ClubFilterBar';
 import { SearchBar } from './components/SearchBar';
 import { GuessesTable } from './components/GuessesTable';
 import { CluesCard } from './components/CluesCard';
@@ -30,6 +31,7 @@ export function App() {
 
   const [activeGame, setActiveGame] = useState<ActiveGame>('classic');
   const [mode, setMode] = useState<GameMode>('daily');
+  const [selectedClubIds, setSelectedClubIds] = useState<string[]>([]);
   const [stats, setStats] = useState<GameStats>(loadStats);
 
   // Synchronisation du thème avec le DOM HTML et le stockage local
@@ -117,10 +119,46 @@ export function App() {
     }
   };
 
-  const handleResetUnlimited = () => {
-    setUnlimitedTarget(getRandomPlayer(unlimitedTarget.id));
+  const handleSelectClub = (clubId: string) => {
+    if (selectedClubIds.length === 1 && selectedClubIds[0] === clubId) {
+      setSelectedClubIds([]);
+      setUnlimitedTarget(getRandomPlayer(unlimitedTarget.id));
+      setUnlimitedGuesses([]);
+      setIsWinModalOpen(false);
+    } else {
+      setSelectedClubIds([clubId]);
+      setMode('unlimited');
+      setUnlimitedTarget(getRandomPlayer(undefined, [clubId]));
+      setUnlimitedGuesses([]);
+      setIsWinModalOpen(false);
+    }
+  };
+
+  const handleSelectMultipleClubs = (clubIds: string[]) => {
+    setSelectedClubIds(clubIds);
+    setMode('unlimited');
+    setUnlimitedTarget(getRandomPlayer(undefined, clubIds));
     setUnlimitedGuesses([]);
     setIsWinModalOpen(false);
+  };
+
+  const handleResetSelection = () => {
+    setSelectedClubIds([]);
+    setUnlimitedTarget(getRandomPlayer());
+    setUnlimitedGuesses([]);
+    setIsWinModalOpen(false);
+  };
+
+  const handleNewRandomPlayer = () => {
+    setUnlimitedTarget(
+      getRandomPlayer(unlimitedTarget.id, selectedClubIds.length > 0 ? selectedClubIds : undefined)
+    );
+    setUnlimitedGuesses([]);
+    setIsWinModalOpen(false);
+  };
+
+  const handleResetUnlimited = () => {
+    handleNewRandomPlayer();
   };
 
   const handlePlayUnlimitedFromDaily = () => {
@@ -154,18 +192,29 @@ export function App() {
         {/* Contenu selon le jeu actif */}
         {activeGame === 'classic' && (
           <main className="w-full">
+            {/* Barre de filtrage par club */}
+            <ClubFilterBar
+              selectedClubIds={selectedClubIds}
+              onSelectClub={handleSelectClub}
+              onSelectMultipleClubs={handleSelectMultipleClubs}
+              onResetSelection={handleResetSelection}
+              onNewRandomPlayer={handleNewRandomPlayer}
+            />
+
             {/* Search Bar */}
             <SearchBar
               onSelectPlayer={handleSelectPlayer}
               guessedPlayerIds={currentGuesses.map((g) => g.player.id)}
               disabled={hasWon}
+              selectedClubIds={selectedClubIds}
             />
 
-            {/* Indices progressifs */}
+            {/* Indices progressifs précis */}
             <CluesCard
               targetPlayer={currentTarget}
               guessesCount={currentGuesses.length}
               hasWon={hasWon}
+              isSingleClubFiltered={selectedClubIds.length === 1}
             />
 
             {/* Guesses Table */}

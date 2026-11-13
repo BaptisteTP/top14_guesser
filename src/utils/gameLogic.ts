@@ -19,10 +19,17 @@ export function getDailyPlayer(dateStr?: string): Player {
   return PLAYERS[index];
 }
 
-export function getRandomPlayer(excludeId?: string): Player {
-  const pool = excludeId ? PLAYERS.filter((p) => p.id !== excludeId) : PLAYERS;
-  const randomIndex = Math.floor(Math.random() * pool.length);
-  return pool[randomIndex];
+export function getRandomPlayer(excludeId?: string, clubIds?: string[]): Player {
+  let pool = PLAYERS;
+  if (clubIds && clubIds.length > 0) {
+    const filtered = pool.filter((p) => clubIds.includes(p.clubId));
+    if (filtered.length > 0) {
+      pool = filtered;
+    }
+  }
+  const eligible = excludeId && pool.length > 1 ? pool.filter((p) => p.id !== excludeId) : pool;
+  const randomIndex = Math.floor(Math.random() * eligible.length);
+  return eligible[randomIndex];
 }
 
 // Calcule la comparaison entre le joueur proposé (guess) et le joueur mystère

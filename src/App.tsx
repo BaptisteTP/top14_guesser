@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { Player, GuessResult, GameMode, GameStats } from './types/game';
+import type { Player, GuessResult, GameMode, GameStats, ActiveGame } from './types/game';
 import {
   getDailyPlayer,
   getRandomPlayer,
@@ -8,25 +8,30 @@ import {
   updateStatsOnWin,
 } from './utils/gameLogic';
 import { Header } from './components/Header';
+import { GameNav } from './components/GameNav';
 import { SearchBar } from './components/SearchBar';
 import { GuessesTable } from './components/GuessesTable';
 import { CluesCard } from './components/CluesCard';
 import { WinModal } from './components/WinModal';
 import { StatsModal } from './components/StatsModal';
 import { HelpModal } from './components/HelpModal';
+import { BlurGame } from './components/BlurGame';
+import { HigherLowerGame } from './components/HigherLowerGame';
+import { QuizClubGame } from './components/QuizClubGame';
 
 export function App() {
+  const [activeGame, setActiveGame] = useState<ActiveGame>('classic');
   const [mode, setMode] = useState<GameMode>('daily');
   const [stats, setStats] = useState<GameStats>(loadStats);
 
-  // Joueur du jour
+  // Joueur du jour (Mode Classique)
   const todayStr = new Date().toISOString().slice(0, 10);
   const [dailyTarget] = useState<Player>(() => getDailyPlayer(todayStr));
 
-  // Joueur illimité
+  // Joueur illimité (Mode Classique)
   const [unlimitedTarget, setUnlimitedTarget] = useState<Player>(() => getRandomPlayer());
 
-  // Historique des essais
+  // Historique des essais (Mode Classique)
   const [dailyGuesses, setDailyGuesses] = useState<GuessResult[]>(() => {
     try {
       const saved = localStorage.getItem(`top14dle_daily_${todayStr}`);
@@ -42,7 +47,7 @@ export function App() {
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
-  // Cible et essais actuels selon le mode
+  // Cible et essais actuels selon le mode classique
   const currentTarget = mode === 'daily' ? dailyTarget : unlimitedTarget;
   const currentGuesses = mode === 'daily' ? dailyGuesses : unlimitedGuesses;
   const hasWon = currentGuesses.some((g) => g.isWinningGuess);
@@ -56,7 +61,6 @@ export function App() {
     }
   }, [dailyGuesses, todayStr]);
 
-  // Si l'utilisateur revient et qu'il a déjà gagné le Daily, on ne réouvre pas la modal automatiquement mais on affiche l'état gagné
   const handleSelectPlayer = (player: Player) => {
     if (hasWon) return;
 
@@ -92,9 +96,10 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-slate-950 text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">
-      <main className="flex-1 w-full pb-16">
+      <div className="flex-1 w-full pb-16">
         <Header
           mode={mode}
+          activeGame={activeGame}
           onModeChange={(m) => setMode(m)}
           onOpenHelp={() => setIsHelpModalOpen(true)}
           onOpenStats={() => setIsStatsModalOpen(true)}
@@ -103,34 +108,46 @@ export function App() {
           guessesCount={currentGuesses.length}
         />
 
-        {/* Search Bar */}
-        <SearchBar
-          onSelectPlayer={handleSelectPlayer}
-          guessedPlayerIds={currentGuesses.map((g) => g.player.id)}
-          disabled={hasWon}
-        />
+        {/* Sélecteur des modes de jeu */}
+        <GameNav activeGame={activeGame} onSelectGame={setActiveGame} />
 
-        {/* Indices progressifs */}
-        <CluesCard
-          targetPlayer={currentTarget}
-          guessesCount={currentGuesses.length}
-          hasWon={hasWon}
-        />
+        {/* Contenu selon le jeu actif */}
+        {activeGame === 'classic' && (
+          <main className="w-full">
+            {/* Search Bar */}
+            <SearchBar
+              onSelectPlayer={handleSelectPlayer}
+              guessedPlayerIds={currentGuesses.map((g) => g.player.id)}
+              disabled={hasWon}
+            />
 
-        {/* Guesses Table */}
-        <GuessesTable guesses={currentGuesses} />
-      </main>
+            {/* Indices progressifs */}
+            <CluesCard
+              targetPlayer={currentTarget}
+              guessesCount={currentGuesses.length}
+              hasWon={hasWon}
+            />
+
+            {/* Guesses Table */}
+            <GuessesTable guesses={currentGuesses} />
+          </main>
+        )}
+
+        {activeGame === 'blur' && <BlurGame />}
+
+        {activeGame === 'higher-lower' && <HigherLowerGame />}
+
+        {activeGame === 'quiz' && <QuizClubGame />}
+      </div>
 
       {/* Footer */}
       <footer className="w-full py-6 border-t border-slate-900 bg-slate-950/80 text-center text-xs text-slate-500">
         <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
-            Inspiré de <span className="text-slate-400 font-medium">Narutodle</span>,{' '}
-            <span className="text-slate-400 font-medium">Loldle</span> &{' '}
-            <span className="text-slate-400 font-medium">Wordle</span>.
+            4 jeux pour les passionnés du championnat de France de rugby Top 14.
           </p>
           <p className="flex items-center gap-1.5">
-            <span>Fait pour les fans de rugby & de Top 14</span>
+            <span>Saison active 2026-2027</span>
             <span>🏉</span>
           </p>
         </div>

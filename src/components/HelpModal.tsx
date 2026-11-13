@@ -25,81 +25,73 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             <HelpCircle size={22} />
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-            Comment jouer ?
+            Les 4 Jeux Top 14
           </h2>
         </div>
 
-        <p className="text-sm text-slate-300 leading-relaxed mb-6">
-          Devine le joueur mystère du <strong>Top 14</strong>. À chaque proposition, les cases
-          changent de couleur pour te guider vers la bonne réponse.
-        </p>
+        {/* 4 Games summary */}
+        <div className="space-y-3 mb-6">
+          <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+            <span className="font-bold text-amber-400 text-sm block mb-1">🎯 1. Top14dle (Classique)</span>
+            Devine le joueur en comparant son club, poste, nationalité, âge, taille et poids. Les cases changent de couleur (Vert, Jaune, Rouge, Flèches) à chaque essai.
+          </div>
 
-        {/* Legend */}
-        <div className="space-y-4 text-xs sm:text-sm">
+          <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+            <span className="font-bold text-amber-400 text-sm block mb-1">👤 2. Photo Flou</span>
+            La photo du joueur mystère se défloute à chaque tentative. Des indices (club, poste, nationalité) se débloquent au fil de tes 5 essais.
+          </div>
+
+          <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+            <span className="font-bold text-amber-400 text-sm block mb-1">⚖️ 3. Plus ou Moins</span>
+            Duel direct entre deux joueurs : devine si le second joueur est plus grand, plus lourd ou plus âgé pour enchaîner la plus longue série !
+          </div>
+
+          <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+            <span className="font-bold text-amber-400 text-sm block mb-1">🏉 4. Quiz Club</span>
+            4 joueurs d'un même effectif apparaissent à l'écran. Retrouve dans quel club du Top 14 ils évoluent ensemble !
+          </div>
+        </div>
+
+        {/* Legend for classic game */}
+        <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Couleurs du mode Top14dle :</h3>
+        <div className="space-y-3 text-xs">
           {/* Vert */}
-          <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 flex items-start gap-3">
-            <div className="w-8 h-8 rounded-xl bg-emerald-600 border border-emerald-400 flex items-center justify-center text-white font-bold text-base shrink-0">
+          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-3">
+            <div className="w-7 h-7 rounded-lg bg-emerald-600 border border-emerald-400 flex items-center justify-center text-white font-bold shrink-0">
               ✓
             </div>
             <div>
               <span className="font-bold text-emerald-400 block mb-0.5">Vert (Correct)</span>
-              <span className="text-slate-300">
-                L'attribut correspond <strong>exactement</strong> à celui du joueur mystère.
-              </span>
+              <span className="text-slate-300">L'attribut correspond exactement.</span>
             </div>
           </div>
 
           {/* Jaune */}
-          <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 flex items-start gap-3">
-            <div className="w-8 h-8 rounded-xl bg-amber-600 border border-amber-400 flex items-center justify-center text-white font-bold text-base shrink-0">
+          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-3">
+            <div className="w-7 h-7 rounded-lg bg-amber-600 border border-amber-400 flex items-center justify-center text-white font-bold shrink-0">
               ~
             </div>
             <div>
               <span className="font-bold text-amber-400 block mb-0.5">Jaune (Partiel / Proche)</span>
-              <span className="text-slate-300">
-                • <strong>Poste :</strong> même ligne (ex: <em>Charnière</em>, <em>3e ligne</em>) ou même grande famille (<em>Avants</em> / <em>Arrières</em>).<br />
-                • <strong>Âge / Taille / Poids :</strong> valeur très proche (±2 ans, ±3 cm, ±4 kg).
-              </span>
-            </div>
-          </div>
-
-          {/* Rouge */}
-          <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 flex items-start gap-3">
-            <div className="w-8 h-8 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 font-bold text-base shrink-0">
-              ✗
-            </div>
-            <div>
-              <span className="font-bold text-slate-400 block mb-0.5">Gris / Rouge (Erreur)</span>
-              <span className="text-slate-300">
-                Aucune correspondance pour cet attribut.
-              </span>
+              <span className="text-slate-300">Même ligne / famille de poste, ou valeur proche (±2 ans, ±3 cm, ±4 kg).</span>
             </div>
           </div>
 
           {/* Flèches */}
-          <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 flex items-start gap-3">
+          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-3">
             <div className="flex gap-1 shrink-0">
-              <div className="w-8 h-8 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-amber-400 font-bold">
-                <ArrowUp size={16} />
+              <div className="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-amber-400 font-bold">
+                <ArrowUp size={14} />
               </div>
-              <div className="w-8 h-8 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-amber-400 font-bold">
-                <ArrowDown size={16} />
+              <div className="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-amber-400 font-bold">
+                <ArrowDown size={14} />
               </div>
             </div>
             <div>
               <span className="font-bold text-amber-400 block mb-0.5">Flèches (Âge, Taille, Poids)</span>
-              <span className="text-slate-300">
-                • <strong>↑ Flèche vers le haut :</strong> La valeur du joueur mystère est <strong>supérieure</strong>.<br />
-                • <strong>↓ Flèche vers le bas :</strong> La valeur du joueur mystère est <strong>inférieure</strong>.
-              </span>
+              <span className="text-slate-300">↑ La valeur du joueur mystère est supérieure. ↓ Elle est inférieure.</span>
             </div>
           </div>
-        </div>
-
-        {/* Indices */}
-        <div className="mt-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-slate-300">
-          <span className="font-bold text-amber-400 block mb-1">💡 Indices progressifs</span>
-          Si tu es bloqué, des indices se débloquent automatiquement au bout de <strong>3, 6 et 8 essais</strong> !
         </div>
       </div>
     </div>

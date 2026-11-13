@@ -79,6 +79,7 @@ export interface GuessResult {
 }
 
 export type GameMode = 'daily' | 'unlimited';
+export type ActiveGame = 'classic' | 'blur' | 'higher-lower' | 'quiz';
 
 export interface GameStats {
   played: number;

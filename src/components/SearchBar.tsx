@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, X, ShieldAlert } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import type { Player } from '../types/game';
 import { PLAYERS } from '../data/players';
 import { CLUBS } from '../data/clubs';
@@ -24,7 +24,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Normalise les chaînes pour la recherche sans accent
   const normalize = (str: string) =>
     str
       .toLowerCase()
@@ -40,17 +39,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     const club = CLUBS[player.clubId];
     const normalizedClub = club ? normalize(club.name) : '';
     const normalizedShortClub = club ? normalize(club.shortName) : '';
-    const normalizedNat = normalize(player.nationality);
 
     return (
       normalizedName.includes(normalizedQuery) ||
       normalizedClub.includes(normalizedQuery) ||
-      normalizedShortClub.includes(normalizedQuery) ||
-      normalizedNat.includes(normalizedQuery)
+      normalizedShortClub.includes(normalizedQuery)
     );
-  }).slice(0, 8); // Top 8 résultats
+  }).slice(0, 7);
 
-  // Gestion des clics en dehors
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
@@ -61,7 +57,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Clavier
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!isOpen || filteredPlayers.length === 0) return;
 
@@ -90,11 +85,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-xl mx-auto my-4 z-30 px-4">
+    <div ref={containerRef} className="relative w-full max-w-lg mx-auto my-4 z-30 px-4">
       <div className="relative flex items-center">
-        <div className="absolute left-7 text-slate-400 pointer-events-none">
-          <Search size={18} />
-        </div>
+        <Search size={18} className="absolute left-4 text-slate-400 pointer-events-none" />
 
         <input
           ref={inputRef}
@@ -112,14 +105,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           onKeyDown={handleKeyDown}
           placeholder={
             disabled
-              ? 'Partie terminée ! Félicitations 🎉'
-              : 'Devine un joueur (ex: Dupont, Ramos, Jalibert, Penaud...)'
+              ? 'Trouvé ! Félicitations 🎉'
+              : 'Chercher un joueur (ex: Dupont, Ramos, Jalibert...)'
           }
-          className={`w-full pl-11 pr-10 py-3.5 bg-slate-900/95 text-white placeholder-slate-400 rounded-2xl border ${
-            isOpen && filteredPlayers.length > 0
-              ? 'border-amber-500 ring-2 ring-amber-500/30'
-              : 'border-slate-800 hover:border-slate-700 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20'
-          } shadow-xl backdrop-blur-md outline-none text-sm sm:text-base font-medium transition-all disabled:opacity-60 disabled:cursor-not-allowed`}
+          className="w-full pl-11 pr-10 py-3.5 bg-slate-900 text-white placeholder-slate-500 rounded-2xl border border-slate-800 hover:border-slate-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-lg outline-none text-sm font-medium transition-all disabled:opacity-60 disabled:cursor-not-allowed"
         />
 
         {query && (
@@ -130,16 +119,16 @@ export const SearchBar: React.FC<SearchBarProps> = ({
               setIsOpen(false);
               inputRef.current?.focus();
             }}
-            className="absolute right-7 p-1 text-slate-400 hover:text-white transition-colors"
+            className="absolute right-3.5 p-1 text-slate-400 hover:text-white transition-colors"
           >
             <X size={16} />
           </button>
         )}
       </div>
 
-      {/* Dropdown Menu */}
+      {/* Clean Dropdown */}
       {isOpen && query.trim() && (
-        <div className="absolute left-4 right-4 mt-2 bg-slate-900/98 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden divide-y divide-slate-800/80 animate-in fade-in slide-in-from-top-2 duration-150">
+        <div className="absolute left-4 right-4 mt-2 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden divide-y divide-slate-800/80">
           {filteredPlayers.length > 0 ? (
             filteredPlayers.map((player, index) => {
               const club = CLUBS[player.clubId];
@@ -152,51 +141,30 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                   onClick={() => handleSelect(player)}
                   onMouseEnter={() => setHighlightedIndex(index)}
                   className={`w-full px-4 py-2.5 flex items-center justify-between text-left transition-colors ${
-                    isSelected ? 'bg-amber-500/15 text-white' : 'text-slate-200 hover:bg-slate-800/60'
+                    isSelected ? 'bg-amber-500/15' : 'hover:bg-slate-800/60'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    {/* Player Photo Avatar */}
-                    <PlayerAvatar player={player} size="md" />
-
-                    {/* Name, Club, Position & Nationality */}
+                    <PlayerAvatar player={player} size="sm" />
                     <div>
-                      <div className="font-bold text-sm sm:text-base text-slate-100 flex items-center gap-2">
+                      <div className="font-semibold text-sm text-slate-100 flex items-center gap-1.5">
                         <span>{player.name}</span>
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 font-semibold">
-                          {player.flag} {player.nationality}
-                        </span>
+                        <span className="text-xs">{player.flag}</span>
                       </div>
-                      <div className="text-xs text-slate-400 flex items-center gap-2 mt-0.5">
-                        <span className="inline-flex items-center gap-1 font-medium text-slate-300">
-                          <ClubLogo club={club} size="xs" />
-                          <span>{club?.name}</span>
-                        </span>
+                      <div className="text-xs text-slate-400 flex items-center gap-1.5">
+                        <ClubLogo club={club} size="xs" />
+                        <span>{club?.shortName || club?.name}</span>
                         <span>•</span>
-                        <span className="text-amber-400 font-medium">{player.position}</span>
+                        <span>{player.position}</span>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Stats & Line Badges */}
-                  <div className="text-right flex flex-col items-end gap-1">
-                    <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
-                      {player.line}
-                    </span>
-                    <span className="text-[11px] text-slate-400 font-medium">
-                      {player.age} ans • {player.height} cm • {player.weight} kg
-                    </span>
                   </div>
                 </button>
               );
             })
           ) : (
-            <div className="px-4 py-6 text-center text-slate-400 text-sm flex flex-col items-center gap-2">
-              <ShieldAlert size={24} className="text-slate-500" />
-              <span>Aucun joueur correspondant trouvé.</span>
-              <span className="text-xs text-slate-500">
-                Essaie avec le nom de famille, la nationalité ou un club de Top 14.
-              </span>
+            <div className="px-4 py-4 text-center text-slate-500 text-xs">
+              Aucun joueur trouvé
             </div>
           )}
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trophy, HelpCircle, RotateCw, Calendar, Flame } from 'lucide-react';
+import { Trophy, HelpCircle, RotateCw } from 'lucide-react';
 import type { GameMode } from '../types/game';
 
 interface HeaderProps {
@@ -21,94 +21,74 @@ export const Header: React.FC<HeaderProps> = ({
   guessesCount,
 }) => {
   return (
-    <header className="w-full max-w-4xl mx-auto pt-6 pb-4 px-4">
-      {/* Top action row */}
-      <div className="flex items-center justify-between gap-4 mb-4">
-        {/* Help button */}
-        <button
-          onClick={onOpenHelp}
-          className="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 transition-all flex items-center gap-1.5 text-sm font-medium shadow-sm hover:scale-105 active:scale-95"
-          title="Règles du jeu"
-        >
-          <HelpCircle size={19} className="text-amber-400" />
-          <span className="hidden sm:inline">Règles</span>
-        </button>
-
-        {/* Title & Rugby Ball */}
-        <div className="text-center">
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-3xl sm:text-4xl select-none animate-bounce">🏉</span>
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-white m-0">
-              TOP<span className="text-amber-400">14</span>DLE
-            </h1>
-          </div>
-          <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1">
-            Devine le joueur mystère du championnat de Top 14
-          </p>
-          <div className="mt-1 flex items-center justify-center gap-2">
-            <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-900 border border-slate-800 text-amber-400">
-              708 joueurs • Saison 2026-2027 • 14 clubs
-            </span>
-          </div>
+    <header className="w-full max-w-4xl mx-auto px-4 py-4 border-b border-slate-800/60 mb-6">
+      <div className="flex items-center justify-between gap-2">
+        {/* Left: Brand Logo */}
+        <div className="flex items-center gap-2">
+          <span className="text-2xl select-none">🏉</span>
+          <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white m-0">
+            TOP<span className="text-amber-400">14</span>DLE
+          </h1>
         </div>
 
-        {/* Stats button */}
-        <button
-          onClick={onOpenStats}
-          className="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 transition-all flex items-center gap-1.5 text-sm font-medium shadow-sm hover:scale-105 active:scale-95"
-          title="Statistiques"
-        >
-          <Trophy size={19} className="text-amber-400" />
-          <span className="hidden sm:inline">Stats</span>
-        </button>
-      </div>
-
-      {/* Mode switcher tabs */}
-      <div className="flex items-center justify-center gap-2 mt-4">
-        <div className="inline-flex p-1 bg-slate-900/90 rounded-2xl border border-slate-800 shadow-inner">
+        {/* Center: Mode switcher */}
+        <div className="inline-flex p-1 bg-slate-900 rounded-xl border border-slate-800 text-xs font-semibold">
           <button
             onClick={() => onModeChange('daily')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-lg transition-all ${
               mode === 'daily'
-                ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
-            <Calendar size={16} />
-            <span>Joueur du Jour</span>
+            Quotidien
           </button>
           <button
             onClick={() => onModeChange('unlimited')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-lg transition-all ${
               mode === 'unlimited'
-                ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
-            <Flame size={16} />
-            <span>Entraînement Illimité</span>
+            Illimité
           </button>
         </div>
 
-        {mode === 'unlimited' && onResetUnlimited && (
+        {/* Right: Actions */}
+        <div className="flex items-center gap-1.5">
+          {mode === 'unlimited' && onResetUnlimited && (
+            <button
+              onClick={onResetUnlimited}
+              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              title="Nouveau joueur"
+            >
+              <RotateCw size={18} />
+            </button>
+          )}
+
           <button
-            onClick={onResetUnlimited}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-medium border border-slate-700 transition-all hover:scale-105 active:scale-95"
-            title="Changer de joueur"
+            onClick={onOpenStats}
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            title="Statistiques"
           >
-            <RotateCw size={14} className="text-amber-400" />
-            <span className="hidden sm:inline">Rejouer</span>
+            <Trophy size={18} />
           </button>
-        )}
+
+          <button
+            onClick={onOpenHelp}
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            title="Comment jouer"
+          >
+            <HelpCircle size={18} />
+          </button>
+        </div>
       </div>
 
-      {/* Essais counter */}
+      {/* Discreet counter */}
       {guessesCount > 0 && (
-        <div className="text-center mt-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-800 text-xs font-medium text-slate-300">
-            <span>Essai{guessesCount > 1 ? 's' : ''} :</span>
-            <span className="font-bold text-amber-400">{guessesCount}</span>
-          </span>
+        <div className="text-center mt-3 text-xs text-slate-400 font-medium">
+          Essai <span className="text-amber-400 font-bold">{guessesCount}</span>
         </div>
       )}
     </header>

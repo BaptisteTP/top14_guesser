@@ -20,9 +20,40 @@ import { HigherLowerGame } from './components/HigherLowerGame';
 import { QuizClubGame } from './components/QuizClubGame';
 
 export function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      return (localStorage.getItem('top14_theme') as 'light' | 'dark') || 'light';
+    } catch {
+      return 'light';
+    }
+  });
+
   const [activeGame, setActiveGame] = useState<ActiveGame>('classic');
   const [mode, setMode] = useState<GameMode>('daily');
   const [stats, setStats] = useState<GameStats>(loadStats);
+
+  // Synchronisation du thème avec le DOM HTML et le stockage local
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.classList.remove('light');
+      root.style.backgroundColor = '#020617';
+      root.style.color = '#f8fafc';
+      document.body.style.backgroundColor = '#020617';
+      document.body.style.color = '#f8fafc';
+    } else {
+      root.classList.add('light');
+      root.classList.remove('dark');
+      root.style.backgroundColor = '#f8fafc';
+      root.style.color = '#0f172a';
+      document.body.style.backgroundColor = '#f8fafc';
+      document.body.style.color = '#0f172a';
+    }
+    try {
+      localStorage.setItem('top14_theme', theme);
+    } catch {}
+  }, [theme]);
 
   // Joueur du jour (Mode Classique)
   const todayStr = new Date().toISOString().slice(0, 10);
@@ -94,12 +125,18 @@ export function App() {
     setIsWinModalOpen(false);
   };
 
+  const handleToggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-slate-950 text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen flex flex-col justify-between bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950 transition-colors">
       <div className="flex-1 w-full pb-16">
         <Header
           mode={mode}
           activeGame={activeGame}
+          theme={theme}
+          onToggleTheme={handleToggleTheme}
           onModeChange={(m) => setMode(m)}
           onOpenHelp={() => setIsHelpModalOpen(true)}
           onOpenStats={() => setIsStatsModalOpen(true)}
@@ -141,7 +178,7 @@ export function App() {
       </div>
 
       {/* Footer */}
-      <footer className="w-full py-6 border-t border-slate-900 bg-slate-950/80 text-center text-xs text-slate-500">
+      <footer className="w-full py-6 border-t border-slate-200 dark:border-slate-900 bg-white/80 dark:bg-slate-950/80 text-center text-xs text-slate-500 transition-colors">
         <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
             4 jeux pour les passionnés du championnat de France de rugby Top 14.

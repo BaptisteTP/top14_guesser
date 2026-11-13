@@ -90,13 +90,13 @@ export function BlurGame() {
   return (
     <div className="max-w-xl mx-auto px-4 py-4 flex flex-col items-center">
       {/* Sélecteur Quotidien / Illimité */}
-      <div className="flex items-center gap-2 mb-5 bg-slate-900/90 border border-slate-800 rounded-full p-1 shadow-inner">
+      <div className="flex items-center gap-2 mb-5 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full p-1 shadow-inner">
         <button
           onClick={() => setSubMode('daily')}
           className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
             subMode === 'daily'
               ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
-              : 'text-slate-400 hover:text-slate-200'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
           }`}
         >
           📅 Quotidien
@@ -106,7 +106,7 @@ export function BlurGame() {
           className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
             subMode === 'unlimited'
               ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
-              : 'text-slate-400 hover:text-slate-200'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
           }`}
         >
           ♾️ Illimité
@@ -114,16 +114,16 @@ export function BlurGame() {
       </div>
 
       <div className="text-center mb-4">
-        <h2 className="text-xl sm:text-2xl font-black text-slate-100 uppercase tracking-wide">
+        <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-slate-100 uppercase tracking-wide">
           👤 Qui est ce joueur ?
         </h2>
-        <p className="text-xs sm:text-sm text-slate-400 mt-1">
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
           La photo devient de plus en plus nette à chaque essai. Tu as {MAX_ATTEMPTS} tentatives !
         </p>
       </div>
 
       {/* Cadre Photo Floutée */}
-      <div className="relative w-56 h-72 sm:w-64 sm:h-80 rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-900 shadow-2xl flex items-center justify-center mb-5 group">
+      <div className="relative w-56 h-72 sm:w-64 sm:h-80 rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-900 shadow-2xl flex items-center justify-center mb-5 group">
         <img
           src={currentTarget.photoUrl || ''}
           alt="Joueur mystère"
@@ -135,13 +135,13 @@ export function BlurGame() {
         />
 
         {/* Badge niveau de netteté */}
-        <div className="absolute top-2.5 right-2.5 bg-slate-950/80 backdrop-blur-md border border-slate-700/80 text-amber-400 text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
+        <div className="absolute top-2.5 right-2.5 bg-white/90 dark:bg-slate-950/80 backdrop-blur-md border border-slate-200 dark:border-slate-700/80 text-amber-600 dark:text-amber-400 text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
           {isGameOver ? 'Révélé' : `Essai ${guesses.length + 1} / ${MAX_ATTEMPTS}`}
         </div>
 
         {/* Overlay Victoire / Défaite */}
         {isGameOver && (
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-4 text-center">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent p-4 text-center">
             <span
               className={`inline-block px-3 py-1 rounded-full text-xs font-black uppercase mb-1 ${
                 isWon ? 'bg-emerald-500 text-slate-950' : 'bg-red-500 text-white'
@@ -159,75 +159,75 @@ export function BlurGame() {
 
       {/* Indices Débloqués */}
       <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-2 mb-5">
-        {/* Indice 1: Club (après 1 essai) */}
+        {/* Indice 1: Club */}
         <div
           className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all ${
             guesses.length >= 1 || isGameOver
-              ? 'bg-slate-900/90 border-slate-700 shadow-sm'
-              : 'bg-slate-950/40 border-slate-800/60 opacity-40'
+              ? 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 shadow-sm'
+              : 'bg-slate-100/60 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800/60 opacity-50'
           }`}
         >
-          <span className="text-[10px] text-slate-400 uppercase font-semibold mb-1">Club</span>
+          <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold mb-1">Club</span>
           {guesses.length >= 1 || isGameOver ? (
             <div className="flex items-center gap-1.5">
               <ClubLogo club={club} size="xs" />
-              <span className="text-xs font-bold text-slate-200">{club?.shortName || currentTarget.clubId}</span>
+              <span className="text-xs font-bold text-slate-900 dark:text-slate-200">{club?.shortName || currentTarget.clubId}</span>
             </div>
           ) : (
-            <span className="text-xs text-slate-600 font-bold">🔒 1 essai</span>
+            <span className="text-xs text-slate-400 dark:text-slate-600 font-bold">🔒 1 essai</span>
           )}
         </div>
 
-        {/* Indice 2: Poste (après 2 essais) */}
+        {/* Indice 2: Poste */}
         <div
           className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all ${
             guesses.length >= 2 || isGameOver
-              ? 'bg-slate-900/90 border-slate-700 shadow-sm'
-              : 'bg-slate-950/40 border-slate-800/60 opacity-40'
+              ? 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 shadow-sm'
+              : 'bg-slate-100/60 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800/60 opacity-50'
           }`}
         >
-          <span className="text-[10px] text-slate-400 uppercase font-semibold mb-1">Poste</span>
+          <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold mb-1">Poste</span>
           {guesses.length >= 2 || isGameOver ? (
-            <span className="text-xs font-bold text-slate-200 leading-tight">{currentTarget.position}</span>
+            <span className="text-xs font-bold text-slate-900 dark:text-slate-200 leading-tight">{currentTarget.position}</span>
           ) : (
-            <span className="text-xs text-slate-600 font-bold">🔒 2 essais</span>
+            <span className="text-xs text-slate-400 dark:text-slate-600 font-bold">🔒 2 essais</span>
           )}
         </div>
 
-        {/* Indice 3: Nationalité (après 3 essais) */}
+        {/* Indice 3: Nationalité */}
         <div
           className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all ${
             guesses.length >= 3 || isGameOver
-              ? 'bg-slate-900/90 border-slate-700 shadow-sm'
-              : 'bg-slate-950/40 border-slate-800/60 opacity-40'
+              ? 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 shadow-sm'
+              : 'bg-slate-100/60 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800/60 opacity-50'
           }`}
         >
-          <span className="text-[10px] text-slate-400 uppercase font-semibold mb-1">Pays</span>
+          <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold mb-1">Pays</span>
           {guesses.length >= 3 || isGameOver ? (
             <div className="flex items-center gap-1.5">
               <CountryFlag nationality={currentTarget.nationality} size="sm" />
-              <span className="text-xs font-bold text-slate-200 truncate">{currentTarget.nationality}</span>
+              <span className="text-xs font-bold text-slate-900 dark:text-slate-200 truncate">{currentTarget.nationality}</span>
             </div>
           ) : (
-            <span className="text-xs text-slate-600 font-bold">🔒 3 essais</span>
+            <span className="text-xs text-slate-400 dark:text-slate-600 font-bold">🔒 3 essais</span>
           )}
         </div>
 
-        {/* Indice 4: Gabarit & Âge (après 4 essais) */}
+        {/* Indice 4: Gabarit & Âge */}
         <div
           className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all ${
             guesses.length >= 4 || isGameOver
-              ? 'bg-slate-900/90 border-slate-700 shadow-sm'
-              : 'bg-slate-950/40 border-slate-800/60 opacity-40'
+              ? 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 shadow-sm'
+              : 'bg-slate-100/60 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800/60 opacity-50'
           }`}
         >
-          <span className="text-[10px] text-slate-400 uppercase font-semibold mb-1">Physique</span>
+          <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold mb-1">Physique</span>
           {guesses.length >= 4 || isGameOver ? (
-            <span className="text-xs font-bold text-slate-200">
+            <span className="text-xs font-bold text-slate-900 dark:text-slate-200">
               {currentTarget.age} ans • {currentTarget.height}cm
             </span>
           ) : (
-            <span className="text-xs text-slate-600 font-bold">🔒 4 essais</span>
+            <span className="text-xs text-slate-400 dark:text-slate-600 font-bold">🔒 4 essais</span>
           )}
         </div>
       </div>
@@ -251,14 +251,14 @@ export function BlurGame() {
               🔄 Jouer avec un autre joueur
             </button>
           ) : (
-            <div className="p-3 bg-slate-900/90 border border-slate-800 rounded-xl text-center text-xs text-slate-400">
+            <div className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-center text-xs text-slate-600 dark:text-slate-400 shadow-sm">
               Rendez-vous demain pour un nouveau joueur en mode Quotidien !
               <button
                 onClick={() => {
                   setSubMode('unlimited');
                   handleResetUnlimited();
                 }}
-                className="block mx-auto mt-2 text-amber-400 font-bold underline hover:text-amber-300"
+                className="block mx-auto mt-2 text-amber-600 dark:text-amber-400 font-bold underline hover:text-amber-500"
               >
                 Jouer en illimité maintenant →
               </button>
@@ -270,7 +270,7 @@ export function BlurGame() {
       {/* Liste des tentatives passées */}
       {guesses.length > 0 && (
         <div className="w-full space-y-1.5">
-          <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-1">
+          <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1">
             Tes propositions ({guesses.length}/{MAX_ATTEMPTS}) :
           </div>
           {guesses.map((p, idx) => {
@@ -280,13 +280,13 @@ export function BlurGame() {
                 key={idx}
                 className={`flex items-center justify-between p-2.5 rounded-xl border transition-all ${
                   correct
-                    ? 'bg-emerald-950/60 border-emerald-500/80 text-emerald-200'
-                    : 'bg-slate-900/70 border-slate-800 text-slate-300'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 text-emerald-900 dark:text-emerald-200'
+                    : 'bg-white dark:bg-slate-900/70 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-300 shadow-sm'
                 }`}
               >
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="text-xs font-black w-4 text-slate-500">{guesses.length - idx}</span>
-                  <div className="w-7 h-7 rounded-full overflow-hidden bg-slate-800 flex-shrink-0">
+                  <span className="text-xs font-black w-4 text-slate-400 dark:text-slate-500">{guesses.length - idx}</span>
+                  <div className="w-7 h-7 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-800 flex-shrink-0">
                     <img
                       src={p.photoUrl || ''}
                       alt={p.name}
@@ -298,7 +298,7 @@ export function BlurGame() {
                   </div>
                   <div className="truncate">
                     <span className="font-bold text-sm block truncate">{p.name}</span>
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400">
                       {CLUBS[p.clubId]?.shortName || p.clubId} • {p.position}
                     </span>
                   </div>

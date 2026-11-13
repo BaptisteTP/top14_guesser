@@ -17,12 +17,12 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
   const getStatusClasses = (status: MatchStatus) => {
     switch (status) {
       case 'correct':
-        return 'bg-emerald-600 border-emerald-500 text-white';
+        return 'bg-emerald-600 border-emerald-500 text-white font-bold';
       case 'partial':
-        return 'bg-amber-600 border-amber-500 text-white';
+        return 'bg-amber-500 border-amber-400 text-slate-950 font-bold';
       case 'wrong':
       default:
-        return 'bg-slate-900 border-slate-800 text-slate-300';
+        return 'bg-slate-200 dark:bg-slate-900 border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-medium';
     }
   };
 
@@ -42,8 +42,8 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
         style={{ animationDelay: isNewest ? '0ms' : '0ms' }}
         className={`h-20 sm:h-22 p-1 rounded-xl border flex flex-col items-center justify-center text-center shadow-sm transition-all ${
           guess.isWinningGuess
-            ? 'bg-emerald-600 border-emerald-500 text-white'
-            : 'bg-slate-900 border-slate-800 text-white'
+            ? 'bg-emerald-600 border-emerald-500 text-white font-bold'
+            : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white'
         } ${isNewest ? 'animate-flip' : ''}`}
       >
         <div className="mb-1">
@@ -103,45 +103,54 @@ export const GuessRow: React.FC<GuessRowProps> = ({ guess, isNewest = false }) =
       {/* 5. Âge */}
       <div
         style={{ animationDelay: isNewest ? '600ms' : '0ms' }}
-        className={`h-20 sm:h-22 p-1 rounded-xl border flex items-center justify-center gap-0.5 text-center shadow-sm transition-all ${getStatusClasses(
+        className={`h-20 sm:h-22 p-1 rounded-xl border flex flex-col items-center justify-center text-center shadow-sm transition-all ${getStatusClasses(
           guess.age.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
-        <span className="text-sm font-bold">{guess.age.value} ans</span>
-        {renderDirection(guess.age.direction)}
+        <span className="text-sm font-bold flex items-center justify-center">
+          {guess.age.value}
+          {renderDirection(guess.age.direction)}
+        </span>
+        <span className="text-[10px] opacity-80">ans</span>
       </div>
 
       {/* 6. Taille */}
       <div
         style={{ animationDelay: isNewest ? '750ms' : '0ms' }}
-        className={`h-20 sm:h-22 p-1 rounded-xl border flex items-center justify-center gap-0.5 text-center shadow-sm transition-all ${getStatusClasses(
+        className={`h-20 sm:h-22 p-1 rounded-xl border flex flex-col items-center justify-center text-center shadow-sm transition-all ${getStatusClasses(
           guess.height.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
-        <span className="text-sm font-bold">{guess.height.value} cm</span>
-        {renderDirection(guess.height.direction)}
+        <span className="text-sm font-bold flex items-center justify-center">
+          {guess.height.value}
+          {renderDirection(guess.height.direction)}
+        </span>
+        <span className="text-[10px] opacity-80">cm</span>
       </div>
 
       {/* 7. Poids */}
       <div
         style={{ animationDelay: isNewest ? '900ms' : '0ms' }}
-        className={`h-20 sm:h-22 p-1 rounded-xl border flex items-center justify-center gap-0.5 text-center shadow-sm transition-all ${getStatusClasses(
+        className={`h-20 sm:h-22 p-1 rounded-xl border flex flex-col items-center justify-center text-center shadow-sm transition-all ${getStatusClasses(
           guess.weight.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
-        <span className="text-sm font-bold">{guess.weight.value} kg</span>
-        {renderDirection(guess.weight.direction)}
+        <span className="text-sm font-bold flex items-center justify-center">
+          {guess.weight.value}
+          {renderDirection(guess.weight.direction)}
+        </span>
+        <span className="text-[10px] opacity-80">kg</span>
       </div>
 
-      {/* 8. Sélections */}
+      {/* 8. International */}
       <div
         style={{ animationDelay: isNewest ? '1050ms' : '0ms' }}
         className={`h-20 sm:h-22 p-1 rounded-xl border flex flex-col items-center justify-center text-center shadow-sm transition-all ${getStatusClasses(
           guess.isInternational.status
         )} ${isNewest ? 'animate-flip' : ''}`}
       >
-        <span className="text-xs font-bold">
-          {guess.player.isInternational ? 'Oui' : 'Non'}
+        <span className="text-sm font-bold">
+          {guess.isInternational.value ? 'Oui' : 'Non'}
         </span>
       </div>
     </div>

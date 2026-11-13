@@ -30,7 +30,6 @@ export const WinModal: React.FC<WinModalProps> = ({
   const [copied, setCopied] = useState(false);
   const [timeUntilNext, setTimeUntilNext] = useState('');
 
-  // Déclencher les confettis à l'ouverture
   useEffect(() => {
     if (isOpen) {
       try {
@@ -46,7 +45,6 @@ export const WinModal: React.FC<WinModalProps> = ({
     }
   }, [isOpen]);
 
-  // Compte à rebours jusqu'à minuit pour le mode quotidien
   useEffect(() => {
     const updateCountdown = () => {
       const now = new Date();
@@ -78,149 +76,126 @@ export const WinModal: React.FC<WinModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl text-center overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl text-center overflow-hidden">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-800 transition-colors"
+          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 dark:hover:text-white rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
         >
           <X size={20} />
         </button>
 
         {/* Victory Header */}
-        <div className="inline-flex p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 mb-3">
+        <div className="inline-flex p-3 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 mb-3">
           <Trophy size={36} className="animate-bounce" />
         </div>
 
-        <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
           ESSAI TRANSFORMÉ ! 🏉
         </h2>
-        <p className="text-sm text-slate-300 mt-1 font-medium">
+        <p className="text-sm text-slate-600 dark:text-slate-300 mt-1 font-medium">
           Tu as trouvé le joueur mystère en{' '}
-          <span className="text-amber-400 font-bold text-base">{guesses.length}</span>{' '}
-          essai{guesses.length > 1 ? 's' : ''}.
+          <strong className="text-amber-600 dark:text-amber-400 font-bold">
+            {guesses.length} essai{guesses.length > 1 ? 's' : ''}
+          </strong>{' '}
+          !
         </p>
 
         {/* Player Spotlight Card */}
-        <div className="my-6 p-5 rounded-2xl bg-slate-950/80 border border-slate-800 text-left relative overflow-hidden">
-          <div
-            className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-15 pointer-events-none"
-            style={{ backgroundColor: club?.colors.primary || '#f59e0b' }}
-          />
-
-          <div className="flex items-center gap-4">
-            {/* Big Player Portrait */}
-            <PlayerAvatar player={targetPlayer} size="xl" className="ring-2 ring-amber-500/40" />
-
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="text-xl sm:text-2xl font-black text-white truncate">
-                  {targetPlayer.name}
-                </span>
-              </div>
-
-              {/* Nationalité Badge */}
-              <div className="flex items-center gap-2 mt-1">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-white">
-                  <CountryFlag nationality={targetPlayer.nationality} fallbackEmoji={targetPlayer.flag} size="sm" />
-                  <span>{targetPlayer.nationality}</span>
-                </span>
-                <span className="text-xs text-amber-400 font-bold">{targetPlayer.position}</span>
-              </div>
-
-              {/* Club & Ancien Club */}
-              <div className="text-xs sm:text-sm text-slate-300 flex items-center gap-2 mt-2">
-                <ClubLogo club={club} size="xs" />
-                <span className="font-semibold">{club?.name}</span>
-                <span className="text-slate-500">•</span>
-                <span className="text-xs text-slate-400">
-                  {targetPlayer.category} ({targetPlayer.line})
-                </span>
-              </div>
-              {targetPlayer.formerClub && (
-                <div className="text-[11px] text-slate-400 mt-1">
-                  <span className="text-slate-500">Origine :</span> {targetPlayer.formerClub}
-                </div>
-              )}
+        <div className="my-5 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 flex items-center gap-4 text-left shadow-inner">
+          <PlayerAvatar player={targetPlayer} size="xl" className="shrink-0" />
+          <div className="min-w-0 flex-1">
+            <h3 className="text-lg font-black text-slate-900 dark:text-white truncate">
+              {targetPlayer.name}
+            </h3>
+            <div className="flex items-center gap-2 mt-0.5 text-xs text-slate-600 dark:text-slate-400">
+              <ClubLogo club={club} size="xs" />
+              <span className="font-semibold">{club?.name}</span>
             </div>
-          </div>
-
-          {/* Player Quick Stats Grid */}
-          <div className="grid grid-cols-4 gap-2 mt-4 pt-4 border-t border-slate-800/80 text-center">
-            <div className="p-2 rounded-xl bg-slate-900/60 border border-slate-800/60">
-              <span className="text-[10px] text-slate-400 uppercase font-semibold block">Âge</span>
-              <span className="text-xs sm:text-sm font-bold text-white">{targetPlayer.age} ans</span>
-            </div>
-            <div className="p-2 rounded-xl bg-slate-900/60 border border-slate-800/60">
-              <span className="text-[10px] text-slate-400 uppercase font-semibold block">Taille</span>
-              <span className="text-xs sm:text-sm font-bold text-white">{targetPlayer.height} cm</span>
-            </div>
-            <div className="p-2 rounded-xl bg-slate-900/60 border border-slate-800/60">
-              <span className="text-[10px] text-slate-400 uppercase font-semibold block">Poids</span>
-              <span className="text-xs sm:text-sm font-bold text-white">{targetPlayer.weight} kg</span>
-            </div>
-            <div className="p-2 rounded-xl bg-slate-900/60 border border-slate-800/60">
-              <span className="text-[10px] text-slate-400 uppercase font-semibold block">Sélec.</span>
-              <span className="text-xs sm:text-sm font-bold text-amber-400">
-                {targetPlayer.isInternational ? targetPlayer.caps || 'Oui' : 'Non'}
+            <div className="flex items-center gap-3 mt-1.5 text-xs text-slate-500 dark:text-slate-400">
+              <span className="flex items-center gap-1">
+                <CountryFlag
+                  nationality={targetPlayer.nationality}
+                  fallbackEmoji={targetPlayer.flag}
+                  size="sm"
+                />
+                <span className="font-medium">{targetPlayer.nationality}</span>
               </span>
+              <span>•</span>
+              <span className="font-medium">{targetPlayer.position}</span>
+            </div>
+            <div className="flex items-center gap-2 mt-1 text-[11px] text-slate-500 dark:text-slate-500">
+              <span>{targetPlayer.age} ans</span>
+              <span>•</span>
+              <span>{targetPlayer.height} cm</span>
+              <span>•</span>
+              <span>{targetPlayer.weight} kg</span>
             </div>
           </div>
-
-          {/* Anecdote */}
-          {targetPlayer.funFact && (
-            <p className="mt-3 text-xs text-slate-300 italic bg-amber-500/5 p-2.5 rounded-xl border border-amber-500/20">
-              💡 {targetPlayer.funFact}
-            </p>
-          )}
         </div>
 
-        {/* Share Button */}
-        <div className="space-y-3">
+        {/* Mini stats preview */}
+        <div className="grid grid-cols-2 gap-3 mb-5">
+          <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 flex items-center justify-center gap-2">
+            <Flame className="text-amber-500" size={18} />
+            <div className="text-left">
+              <div className="text-[10px] uppercase font-bold text-slate-500">Essais</div>
+              <div className="text-base font-black text-slate-900 dark:text-white">{guesses.length}</div>
+            </div>
+          </div>
+
+          <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 flex items-center justify-center gap-2">
+            <Trophy className="text-emerald-500" size={18} />
+            <div className="text-left">
+              <div className="text-[10px] uppercase font-bold text-slate-500">Mode</div>
+              <div className="text-base font-black text-slate-900 dark:text-white capitalize">{mode}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="space-y-2.5">
           <button
             onClick={handleShare}
-            className={`w-full py-3.5 px-6 rounded-2xl font-bold flex items-center justify-center gap-2.5 shadow-lg transition-all ${
-              copied
-                ? 'bg-emerald-600 text-white'
-                : 'bg-amber-500 hover:bg-amber-400 text-slate-950 hover:scale-[1.02] active:scale-[0.98]'
-            }`}
+            className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg transition-all active:scale-98 flex items-center justify-center gap-2"
           >
             {copied ? (
               <>
                 <Check size={18} />
-                <span>Copié dans le presse-papiers !</span>
+                <span>Copié dans le presse-papier !</span>
               </>
             ) : (
               <>
                 <Share2 size={18} />
-                <span>Partager le résultat</span>
+                <span>Partager mon résultat</span>
               </>
             )}
           </button>
 
-          {/* Action according to mode */}
           {mode === 'daily' ? (
             <div className="pt-2">
-              <div className="text-xs text-slate-400 mb-3">
-                Prochain joueur du jour dans :{' '}
-                <span className="font-mono font-bold text-white">{timeUntilNext}</span>
-              </div>
               <button
                 onClick={onPlayUnlimited}
-                className="w-full py-3 px-5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-semibold border border-slate-700 transition-all flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700"
               >
-                <Flame size={16} className="text-amber-400" />
-                <span>Continuer en mode Entraînement</span>
+                <span>Rejouer en mode Illimité</span>
+                <span>→</span>
               </button>
+              {timeUntilNext && (
+                <p className="text-[11px] text-slate-500 dark:text-slate-500 mt-2 font-medium">
+                  Prochain joueur quotidien dans :{' '}
+                  <span className="font-mono font-bold text-slate-700 dark:text-slate-300">{timeUntilNext}</span>
+                </p>
+              )}
             </div>
           ) : (
             <button
               onClick={onResetUnlimited}
-              className="w-full py-3 px-5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-semibold border border-slate-700 transition-all flex items-center justify-center gap-2"
+              className="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700"
             >
-              <RotateCw size={16} className="text-amber-400" />
-              <span>Nouveau joueur mystère</span>
+              <RotateCw size={14} />
+              <span>Joueur suivant</span>
             </button>
           )}
         </div>

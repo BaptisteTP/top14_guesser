@@ -70,13 +70,11 @@ export function HigherLowerGame() {
         } catch {}
       }
 
-      // Passer au tour suivant après 1.2s
       setTimeout(() => {
         setPlayerA(playerB);
         setPlayerB(getRandomPlayerForHL(playerB.id));
         setRevealed(false);
         setLastResult(null);
-        // Changer de métrique aléatoirement
         setMetricIndex((prev) => (prev + 1) % METRICS.length);
       }, 1200);
     } else {
@@ -104,22 +102,22 @@ export function HigherLowerGame() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-4 flex flex-col items-center">
       {/* En-tête Scores */}
-      <div className="w-full flex items-center justify-between mb-4 bg-slate-900/80 border border-slate-800 rounded-2xl p-3 px-5 shadow-sm">
+      <div className="w-full flex items-center justify-between mb-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 px-5 shadow-sm">
         <div className="flex items-center gap-2">
-          <span className="text-xs uppercase font-bold text-slate-400">🔥 Série en cours :</span>
-          <span className="text-xl font-black text-amber-400">{score}</span>
+          <span className="text-xs uppercase font-bold text-slate-500 dark:text-slate-400">🔥 Série en cours :</span>
+          <span className="text-xl font-black text-amber-500">{score}</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs uppercase font-bold text-slate-400">🏆 Record :</span>
-          <span className="text-xl font-black text-emerald-400">{highScore}</span>
+          <span className="text-xs uppercase font-bold text-slate-500 dark:text-slate-400">🏆 Record :</span>
+          <span className="text-xl font-black text-emerald-600 dark:text-emerald-400">{highScore}</span>
         </div>
       </div>
 
       <div className="text-center mb-6">
-        <h2 className="text-xl sm:text-2xl font-black text-slate-100 uppercase tracking-wide">
+        <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-slate-100 uppercase tracking-wide">
           ⚖️ Plus ou Moins Top 14
         </h2>
-        <p className="text-xs sm:text-sm text-slate-400 mt-1">
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
           Compare les stats de ces deux joueurs en duel direct !
         </p>
       </div>
@@ -127,76 +125,76 @@ export function HigherLowerGame() {
       {/* Duel Cartes */}
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 relative">
         {/* Joueur A (Référence) */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 flex flex-col items-center text-center shadow-xl relative overflow-hidden">
-          <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-slate-700 bg-slate-800 mb-3 shadow-md">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col items-center text-center shadow-md relative overflow-hidden">
+          <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 mb-3 shadow-sm">
             {playerA.photoUrl ? (
               <img src={playerA.photoUrl} alt={playerA.name} className="w-full h-full object-cover" />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-3xl font-black text-slate-500">
+              <div className="w-full h-full flex items-center justify-center text-3xl font-black text-slate-400">
                 {playerA.name[0]}
               </div>
             )}
           </div>
 
-          <h3 className="text-lg font-black text-white">{playerA.name}</h3>
+          <h3 className="text-lg font-black text-slate-900 dark:text-white">{playerA.name}</h3>
 
           <div className="flex items-center gap-2 my-1">
             <ClubLogo club={clubA} size="xs" />
-            <span className="text-xs text-slate-300 font-semibold">{clubA?.name}</span>
+            <span className="text-xs text-slate-600 dark:text-slate-300 font-semibold">{clubA?.name}</span>
             <CountryFlag nationality={playerA.nationality} size="sm" />
           </div>
 
-          <span className="text-[11px] text-slate-400 font-medium mb-3">{playerA.position}</span>
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium mb-3">{playerA.position}</span>
 
-          <div className="w-full bg-slate-950/80 border border-slate-800 rounded-xl py-3 px-4 mt-auto">
-            <span className="text-[11px] uppercase tracking-wider text-slate-400 block font-bold mb-0.5">
+          <div className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 mt-auto">
+            <span className="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 block font-bold mb-0.5">
               {currentMetric.label}
             </span>
-            <span className="text-3xl font-black text-amber-400 tracking-tight">
-              {valA} <span className="text-sm font-semibold text-slate-400">{currentMetric.unit}</span>
+            <span className="text-3xl font-black text-amber-500 tracking-tight">
+              {valA} <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">{currentMetric.unit}</span>
             </span>
           </div>
         </div>
 
         {/* Badge VS central */}
-        <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-slate-950 border-2 border-amber-500/80 items-center justify-center text-xs font-black text-amber-400 shadow-xl">
+        <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white dark:bg-slate-950 border-2 border-amber-500 items-center justify-center text-xs font-black text-amber-600 dark:text-amber-400 shadow-xl">
           VS
         </div>
 
         {/* Joueur B (Défi) */}
         <div
-          className={`bg-slate-900/90 border rounded-2xl p-5 flex flex-col items-center text-center shadow-xl relative overflow-hidden transition-all ${
+          className={`bg-white dark:bg-slate-900 border rounded-2xl p-5 flex flex-col items-center text-center shadow-md relative overflow-hidden transition-all ${
             lastResult === 'correct'
-              ? 'border-emerald-500 bg-emerald-950/20'
+              ? 'border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20'
               : lastResult === 'wrong'
-              ? 'border-red-500 bg-red-950/20'
-              : 'border-slate-800'
+              ? 'border-red-500 bg-red-50/50 dark:bg-red-950/20'
+              : 'border-slate-200 dark:border-slate-800'
           }`}
         >
-          <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-slate-700 bg-slate-800 mb-3 shadow-md">
+          <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 mb-3 shadow-sm">
             {playerB.photoUrl ? (
               <img src={playerB.photoUrl} alt={playerB.name} className="w-full h-full object-cover" />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-3xl font-black text-slate-500">
+              <div className="w-full h-full flex items-center justify-center text-3xl font-black text-slate-400">
                 {playerB.name[0]}
               </div>
             )}
           </div>
 
-          <h3 className="text-lg font-black text-white">{playerB.name}</h3>
+          <h3 className="text-lg font-black text-slate-900 dark:text-white">{playerB.name}</h3>
 
           <div className="flex items-center gap-2 my-1">
             <ClubLogo club={clubB} size="xs" />
-            <span className="text-xs text-slate-300 font-semibold">{clubB?.name}</span>
+            <span className="text-xs text-slate-600 dark:text-slate-300 font-semibold">{clubB?.name}</span>
             <CountryFlag nationality={playerB.nationality} size="sm" />
           </div>
 
-          <span className="text-[11px] text-slate-400 font-medium mb-3">{playerB.position}</span>
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium mb-3">{playerB.position}</span>
 
           {/* Zone de devinette ou résultat */}
           {!revealed ? (
             <div className="w-full flex flex-col gap-2 mt-auto">
-              <span className="text-xs font-bold text-slate-300">
+              <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
                 Est-ce que {playerB.name.split(' ')[0]} a une {currentMetric.label.toLowerCase()} :
               </span>
               <div className="grid grid-cols-2 gap-2">
@@ -208,23 +206,23 @@ export function HigherLowerGame() {
                 </button>
                 <button
                   onClick={() => handleChoice('lower')}
-                  className="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 font-black text-xs uppercase tracking-wider border border-slate-700 shadow-md transition-all"
+                  className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 active:scale-95 text-slate-800 dark:text-slate-200 font-black text-xs uppercase tracking-wider border border-slate-200 dark:border-slate-700 shadow-sm transition-all"
                 >
                   {currentMetric.lowerText}
                 </button>
               </div>
             </div>
           ) : (
-            <div className="w-full bg-slate-950/80 border border-slate-800 rounded-xl py-3 px-4 mt-auto">
-              <span className="text-[11px] uppercase tracking-wider text-slate-400 block font-bold mb-0.5">
+            <div className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 mt-auto">
+              <span className="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 block font-bold mb-0.5">
                 {currentMetric.label}
               </span>
               <span
                 className={`text-3xl font-black tracking-tight ${
-                  lastResult === 'correct' ? 'text-emerald-400' : 'text-red-400'
+                  lastResult === 'correct' ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400'
                 }`}
               >
-                {valB} <span className="text-sm font-semibold text-slate-400">{currentMetric.unit}</span>
+                {valB} <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">{currentMetric.unit}</span>
               </span>
               <span className="block text-xs font-black uppercase mt-1">
                 {lastResult === 'correct' ? '✅ Bien vu !' : '❌ Raté !'}
@@ -236,23 +234,23 @@ export function HigherLowerGame() {
 
       {/* Modal Game Over */}
       {isGameOver && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border-2 border-slate-800 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl animate-fade-in">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl animate-fade-in">
             <span className="text-4xl block mb-2">💥</span>
-            <h3 className="text-2xl font-black text-white uppercase tracking-tight">Fin de série !</h3>
-            <p className="text-sm text-slate-400 mt-1">
-              Tu as enchaîné une série de <strong className="text-amber-400">{score}</strong> bonne(s) réponse(s).
+            <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Fin de série !</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+              Tu as enchaîné une série de <strong className="text-amber-600 dark:text-amber-400">{score}</strong> bonne(s) réponse(s).
             </p>
 
-            <div className="my-5 p-3.5 bg-slate-950 rounded-xl border border-slate-800 flex justify-around">
+            <div className="my-5 p-3.5 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 flex justify-around">
               <div>
                 <span className="text-[10px] uppercase font-bold text-slate-500 block">Score final</span>
-                <span className="text-2xl font-black text-amber-400">{score}</span>
+                <span className="text-2xl font-black text-amber-500">{score}</span>
               </div>
-              <div className="w-px bg-slate-800" />
+              <div className="w-px bg-slate-200 dark:bg-slate-800" />
               <div>
                 <span className="text-[10px] uppercase font-bold text-slate-500 block">Record</span>
-                <span className="text-2xl font-black text-emerald-400">{highScore}</span>
+                <span className="text-2xl font-black text-emerald-600 dark:text-emerald-400">{highScore}</span>
               </div>
             </div>
 

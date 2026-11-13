@@ -2,7 +2,7 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 min-h-screen font-sans antialiased selection:bg-amber-500 selection:text-slate-950;
+    @apply bg-slate-50 text-slate-900 min-h-screen font-sans antialiased selection:bg-amber-500 selection:text-slate-950;
   }
 }
 
@@ -10,11 +10,11 @@
 @keyframes flip-in {
   0% {
     transform: rotateX(0deg);
-    background-color: rgb(30 41 59); /* slate-800 */
+    background-color: rgb(241 245 249); /* slate-100 */
   }
   49% {
     transform: rotateX(90deg);
-    background-color: rgb(30 41 59);
+    background-color: rgb(241 245 249);
   }
   50% {
     transform: rotateX(90deg);
@@ -28,18 +28,18 @@
   animation: flip-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Custom scrollbar for player dropdown */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(241, 245, 249, 0.8);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.5);
+  background: rgba(148, 163, 184, 0.6);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.8);
+  background: rgba(100, 116, 139, 0.9);
 }
